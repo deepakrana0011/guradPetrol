@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:attrs="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/dp_eight"
+        android:layout_height="match_parent">
+
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewGuradPatrol"
+            android:fontFamily="@font/roboto_bold"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_twenty_four"
+    />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewAGuide"
+            android:layout_below="@+id/textViewGuradPatrol"
+            android:text="@string/a_guide_to_the_guards"
+            android:textAllCaps="false"
+            android:layout_marginTop="@dimen/dp_eight"
+            android:fontFamily="@font/roboto_regular"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorBlue"
+            android:textSize="@dimen/sp_sixteen"/>
+    <androidx.viewpager.widget.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/dp_twenty_eight"
+            android:layout_marginLeft="@dimen/dp_twenty_eight"
+            android:layout_marginTop="@dimen/dp_fifty"
+            android:layout_above="@+id/pageIndicatorView"
+            android:layout_below="@+id/textViewAGuide"
+            android:id="@+id/viewPager">
+    </androidx.viewpager.widget.ViewPager>
+
+    <com.rd.PageIndicatorView
+            android:id="@+id/pageIndicatorView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:piv_animationType="fill"
+            android:layout_above="@+id/buttonSkip"
+            app:piv_dynamicCount="true"
+            android:layout_centerHorizontal="true"
+            app:piv_interactiveAnimation="true"
+            android:layout_marginTop="@dimen/dp_sixteen"
+            android:padding="@dimen/dp_four"
+            android:layout_marginBottom="@dimen/dp_sixteen"
+            app:piv_selectedColor="@color/colorBlue"
+            app:piv_unselectedColor="@color/colorBlue"
+            app:piv_radius="@dimen/dp_four"
+            app:piv_viewPager="@id/viewPager">
+    </com.rd.PageIndicatorView>
+
+        <Button
+                android:layout_width="@dimen/dp_two_hundered"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonSkip"
+                android:text="@string/skip"
+                android:padding="@dimen/dp_eight"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="@dimen/dp_sixteen"
+                android:layout_marginRight="@dimen/dp_sixteen"
+                android:layout_marginBottom="@dimen/dp_sixteen"
+                android:background="@drawable/selector_bg_white_eight_dp_round"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_sixteen"
+                android:textAllCaps="true"
+        />
+
+</RelativeLayout>

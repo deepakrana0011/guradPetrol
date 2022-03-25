@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+
+        <ImageView
+                android:id="@+id/imageViewMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_margin="@dimen/dp_eight"
+                android:padding="@dimen/dp_eight"
+                android:src="@drawable/ic_menu_header"/>
+
+        <TextView
+                android:id="@+id/textViewTitleName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Guard Patrol"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_eighteen"/>
+
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewTimeLine"
+                android:text="Timeline"
+                android:textColor="@android:color/white"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/dp_eight"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="@dimen/sp_fourteen"
+        />
+    </RelativeLayout>
+</RelativeLayout>

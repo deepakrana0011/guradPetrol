@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rootLayout"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:stateListAnimator="@null"
+                android:elevation="@dimen/dp_eight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:contentInsetStart="0dp"
+                    android:contentInsetLeft="0dp"
+                    android:contentInsetEnd="0dp"
+                    android:contentInsetRight="0dp"
+                    app:contentInsetEnd="0dp"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetRight="0dp"
+                    app:contentInsetStart="0dp"/>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none"
+                    android:overScrollMode="never"
+                    android:layout_above="@+id/relativeLayoutBottom"
+                    android:fillViewport="true">
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:id="@+id/linearLayoutQrCode"
+                                  android:gravity="center"
+                                  android:orientation="vertical"
+                    >
+                        <androidx.cardview.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardUseCompatPadding="true"
+                                app:cardCornerRadius="@dimen/dp_eight"
+                                app:cardElevation="@dimen/dp_four"
+                                android:layout_marginTop="@dimen/dp_sixteen"
+
+                        >
+
+
+                            <RelativeLayout
+                                    android:layout_width="@dimen/dp_two_hundered"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dp_twenty_four"
+                                    android:layout_marginBottom="@dimen/dp_twenty_four"
+                                    android:gravity="center">
+
+
+                                <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:src="@drawable/ic_qr_page"
+                                />
+
+                                <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/dp_fourty"
+                                        android:src="@drawable/scanning_image"
+                                />
+
+
+                            </RelativeLayout>
+
+
+                        </androidx.cardview.widget.CardView>
+                        <Button
+                                android:layout_width="@dimen/dp_two_hundered"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/buttonScanQR"
+                                android:text="@string/scan_qr_code"
+                                android:padding="@dimen/dp_eight"
+                                android:layout_above="@+id/textViewQRDescritption"
+                                android:layout_marginTop="@dimen/sp_tweleve"
+                                android:layout_marginLeft="@dimen/dp_sixteen"
+                                android:layout_marginRight="@dimen/dp_sixteen"
+                                android:layout_marginBottom="@dimen/dp_sixteen"
+                                android:background="@drawable/selector_bg_black_eight_dp_round"
+                                android:fontFamily="@font/roboto_bold"
+                                android:gravity="center"
+                                android:layout_centerHorizontal="true"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/sp_sixteen"
+                                android:textAllCaps="true"/>
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textViewQRDescritption"
+                                android:layout_alignParentBottom="true"
+                                android:gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/dp_sixteen"
+                                android:fontFamily="@font/roboto_regular"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/sp_sixteen"
+                                android:includeFontPadding="false"
+                                android:layout_marginLeft="@dimen/dp_eight"
+                                android:layout_marginRight="@dimen/dp_eight"
+                                android:text="@string/tap_the_button_and_target_the_device_to_the_qr_code"
+                        />
+                    </LinearLayout>
+
+
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:id="@+id/linearLayoutNfc"
+                                  android:gravity="center"
+                                  android:orientation="vertical">
+                        <androidx.cardview.widget.CardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:cardUseCompatPadding="true"
+                                app:cardCornerRadius="@dimen/dp_eight"
+                                app:cardElevation="@dimen/dp_four"
+                                android:layout_marginTop="@dimen/dp_sixteen"
+
+                        >
+
+
+                            <RelativeLayout
+                                    android:layout_width="@dimen/dp_two_hundered"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dp_twenty_four"
+                                    android:layout_marginBottom="@dimen/dp_twenty_four"
+                                    android:gravity="center">
+
+
+                                <ImageView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginRight="@dimen/dp_thirty_two"
+                                        android:src="@drawable/ic_nfc_page"
+                                />
+
+
+                                <LinearLayout android:layout_width="match_parent"
+                                              android:layout_height="wrap_content"
+                                              android:layout_centerVertical="true"
+                                              android:gravity="center"
+                                              android:orientation="horizontal">
+                                    <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/imageViewNfcPhone"
+                                            android:src="@drawable/nfc_image"/>
+
+                                    <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:src="@drawable/ic_wave"
+                                            android:layout_gravity="top"
+                                            android:layout_toRightOf="@+id/imageViewNfcPhone"/>
+
+                                </LinearLayout>
+
+
+                            </RelativeLayout>
+
+
+                        </androidx.cardview.widget.CardView>
+                        <Button
+                                android:layout_width="@dimen/dp_two_hundered"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/buttonNfcTag"
+                                android:text="@string/scan_nfc_tag"
+                                android:padding="@dimen/dp_eight"
+                                android:layout_above="@+id/textViewNFCDescription"
+                                android:layout_marginTop="@dimen/sp_tweleve"
+                                android:layout_marginLeft="@dimen/dp_sixteen"
+                                android:layout_marginRight="@dimen/dp_sixteen"
+                                android:layout_marginBottom="@dimen/dp_sixteen"
+                                android:background="@drawable/selector_bg_black_eight_dp_round"
+                                android:fontFamily="@font/roboto_bold"
+                                android:gravity="center"
+                                android:layout_centerHorizontal="true"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/sp_sixteen"
+                                android:textAllCaps="true"/>
+                        <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textViewNFCDescription"
+                                android:layout_alignParentBottom="true"
+                                android:gravity="center_horizontal"
+                                android:layout_marginBottom="@dimen/dp_sixteen"
+                                android:fontFamily="@font/roboto_regular"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/sp_sixteen"
+                                android:includeFontPadding="false"
+                                android:layout_marginLeft="@dimen/dp_eight"
+                                android:layout_marginRight="@dimen/dp_eight"
+                                android:text="@string/tap_the_button_and_hold_the_tag_against_the_back_of_your_device_to_read_it"
+                        />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </ScrollView>
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_sixty"
+                    android:id="@+id/relativeLayoutBottom"
+                    android:background="@android:color/black"
+                    android:layout_alignParentBottom="true">
+                <ImageView
+                        android:layout_width="@dimen/dp_fifty"
+                        android:layout_height="@dimen/dp_fifty"
+                        android:id="@+id/imageViewTorch"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_torch"/>
+                <ImageView
+                        android:layout_width="@dimen/dp_fifty"
+                        android:layout_height="@dimen/dp_fifty"
+                        android:id="@+id/imageViewSos"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:src="@drawable/ic_sos_red_border"/>
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>

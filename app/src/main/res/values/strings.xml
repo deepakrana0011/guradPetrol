@@ -1,0 +1,123 @@
+<resources>
+    <string name="app_name">Guard Patrol</string>
+    <string name="a_guide_to_the_guards">A Guide to the Guards</string>
+    <string name="skip">Skip</string>
+    <string name="guard_patrol">GUARD PATROL</string>
+    <string name="a_utility_tool_for_the_guards_while_patrolling">A Utility Tool for the Guards while Patrolling
+    </string>
+    <string name="login_access_to">LOGIN ACCESS TO</string>
+    <string name="enter_your_id_and_pin_to_get_access">Enter your ID and PIN to get access</string>
+    <string name="guard_id_number">Guard Id Number</string>
+    <string name="_4_6_digits_pin">4-6 Digits PIN</string>
+    <string name="forgot_pin">FORGOT PIN?</string>
+    <string name="login">Log in</string>
+    <string name="submit">Submit</string>
+    <string name="enter_registered_email">Enter Registered Email</string>
+    <string name="forgot_pin_caps">FORGOT PIN</string>
+
+    <string name="today_schedule">Today\'s Schedule</string>
+    <string name="history">History</string>
+    <string name="about_guard_patrol">About GUARD PATROL</string>
+    <string name="settings">Settings</string>
+    <string name="help">Help</string>
+    <string name="messages">Messages</string>
+    <string name="zone">ZONE</string>
+    <string name="duty_hours">DUTY HOURS</string>
+    <string name="about">About</string>
+    <string name="send_incidents">Send Incidents</string>
+    <string name="sent_incident">Sent Incident</string>
+    <string name="sent_message">Sent Message</string>
+    <string name="incidents">Incidents</string>
+    <string name="incidentsCaps">INCIDENTS</string>
+    <string name="send_messages">Send Messages</string>
+    <string name="messagesCaps">Messages</string>
+    <string name="select_incidents">Select Incidents</string>
+    <string name="assign_nearest_checkpoint">Assign Nearest Checkpoint</string>
+    <string name="audio">Audio</string>
+    <string name="image">Image</string>
+    <string name="text_message">Text Message</string>
+    <string name="sos_event_will_be_sent_in">SOS event will be sent in</string>
+    <string name="cancel">Cancel</string>
+    <string name="sos">SOS</string>
+    <string name="tap_the_button_and_target_the_device_to_the_qr_code">Tap the button and target the device to the QR
+        code
+    </string>
+    <string name="tap_the_button_and_hold_the_tag_against_the_back_of_your_device_to_read_it">Tap the button and hold
+        the tag against the back of your device to read it
+    </string>
+    <string name="scan_nfc_tag">Scan nfc tag</string>
+    <string name="scan_qr_code">Scan qr code</string>
+    <string name="scan">Scan</string>
+    <string name="emtpty_guard_id">Please enter the guard id</string>
+    <string name="empty_guard_pin">Please enter the guard pin</string>
+    <string name="loading">Loading</string>
+    <string name="permission">Permission</string>
+    <string name="locationPermission">Without location permission the app in unable to find your current location.So
+        please allow this permission
+    </string>
+    <string name="ok">Ok</string>
+    <string name="choose_from">Choose From</string>
+    <string name="phone_s_gallery">Phone\'s Gallery</string>
+    <string name="cancel1">Cancel</string>
+    <string name="take_a_pic">Take a Pic</string>
+    <string name="select_image_for_incident">Please select the image for all the selected incidents</string>
+    <string name="nfc">NFC</string>
+    <string name="geo_fencing">Geo Fencing</string>
+    <string name="qr_code">QR Code</string>
+    <string name="storagePermission">Without storage permission the app is unable to get the images from the phone.So please allow this permission
+    </string>
+    <string name="cameraPermission2">Without camera permission the app is unable to capture the image.So please allow this permission
+    </string>
+    <string name="cameraPermission">Without camera permission the app is unable to scan the qr code.So please allow this permission
+    </string>
+    <string name="upcoming">UPCOMING</string>
+    <string name="today_s_tour_for">Today\'s Tour for</string>
+    <string name="check_point_successful">Checkpoint Successful</string>
+    <string name="camera_permission">To access the torch, the application required camera permission..</string>
+
+    <string name="unknown_geofence_error">Unkown geofence error</string>
+    <string name="geofence_not_available">Geofence not available</string>
+    <string name="geofence_too_many_geofences">Too many geofences found</string>
+    <string name="geofence_too_many_pending_intents">Too many geofences penidng intent</string>
+    <string name="geofence_transition_invalid_type">Invalid Geofence</string>
+    <string name="ready_to_scan_nfc_tag">READY TO SCAN NFC TAG</string>
+    <string name="hold_your_device_nfc">Hold your device near NFC TAG</string>
+    <string name="alert">ALERT</string>
+    <string name="please_turn_on_nfc_setting_to_scan_nfc_tag">Please turn on NFC setting to scan the NFC.
+    </string>
+    <string name="done">DONE</string>
+    <string name="detected">DETECTED</string>
+    <string name="checkpoint_scanned">Checkpoint scanned successfully.</string>
+    <string name="select_one_icident">Please select at least one incident</string>
+    <string name="starting_point">Starting Point</string>
+
+
+    <integer-array name="introduction_screens">
+        <item>@drawable/image_help1</item>
+        <item>@drawable/image_help2</item>
+        <item>@drawable/image_help3</item>
+        <item>@drawable/image_help4</item>
+        <item>@drawable/image_help5</item>
+        <item>@drawable/image_help6</item>
+    </integer-array>
+
+
+    <string-array name="nav_item">
+        <item>@string/today_schedule</item>
+        <item>@string/history</item>
+        <item>@string/about_guard_patrol</item>
+        <item>@string/settings</item>
+        <item>@string/help</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="message_must_contain_audio_image_video">Message must contain at least audio or image or text</string>
+    <string name="do_you_want_to_assign_to_nearest_check_point">"Do you want to assign this incident to your nearest checkpoint?"
+    </string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="mic_phone_permission">Without microphone permission app is unable to record the audio. So please give
+        this permission.
+    </string>
+</resources>

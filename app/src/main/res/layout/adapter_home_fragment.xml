@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/relativeLayoutHelping">
+            <View android:layout_width="@dimen/dp_one"
+                  android:layout_height="match_parent"
+                  android:id="@+id/view"
+                  android:background="@color/lightGray"
+                  android:layout_centerHorizontal="true"/>
+            <ImageView
+                    android:layout_width="@dimen/dp_tweleve"
+                    android:layout_height="@dimen/dp_tweleve"
+                    android:id="@+id/imageViewCircleDot"
+                    android:src="@drawable/bg_red_circle"/>
+        </RelativeLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@+id/relativeLayoutHelping"
+                android:layout_marginTop="-5dp"
+                android:paddingBottom="@dimen/dp_twenty_four"
+                android:layout_marginLeft="@dimen/dp_tweleve">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/checkPointName"
+                    android:fontFamily="@font/roboto_bold"
+                    android:includeFontPadding="false"
+                    android:textSize="@dimen/sp_sixteen"
+                    android:text="Check Point 01:Front Floor"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayoutScan"
+                    android:layout_marginTop="@dimen/dp_four"
+                    android:orientation="horizontal">
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageViewQR"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_qr_black"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewScanTime"
+                        android:fontFamily="@font/roboto_regular"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="@dimen/sp_ten"
+                        android:text="NFC | 11:05 PM | 2 Mar 2019 | Checkpoint Sucessful"
+                        android:layout_marginLeft="@dimen/dp_tweleve"
+                />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_four"
+                    android:id="@+id/linearLayoutNfc"
+                    android:orientation="horizontal">
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageViewNFC"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_nfc_black"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewNFCTime"
+                        android:fontFamily="@font/roboto_regular"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="@dimen/sp_ten"
+                        android:text="NFC | 11:05 PM | 2 Mar 2019 | Checkpoint Sucessful"
+                        android:layout_marginLeft="@dimen/dp_tweleve"
+                />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayoutGeoFence"
+                    android:layout_marginTop="@dimen/dp_four"
+                    android:visibility="gone"
+                    android:orientation="horizontal">
+
+                <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageViewGEO"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_geo_black"/>
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewGeoFenceTime"
+                        android:fontFamily="@font/roboto_regular"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="@dimen/sp_ten"
+                        android:text="NFC | 11:05 PM | 2 Mar 2019 | Checkpoint Sucessful"
+                        android:layout_marginLeft="@dimen/dp_tweleve"
+                />
+
+
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/linearLayoutStartEndTime"
+                    android:layout_marginTop="@dimen/dp_four"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewStartEndTime"
+                        android:fontFamily="@font/roboto_regular"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="@dimen/sp_ten"
+                        android:text="NFC | 11:05 PM | 2 Mar 2019 | Checkpoint Sucessful"/>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

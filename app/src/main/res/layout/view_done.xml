@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:custom="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#99000000"
+                android:gravity="center">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:elevation="0dp"
+            android:layout_margin="@dimen/dp_eight"
+            android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_thirty_two"
+                custom:cardCornerRadius="@dimen/dp_eight"
+        >
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_tweleve"
+                    android:gravity="center"
+                    android:orientation="vertical"
+            >
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textViewAlert"
+                            android:text="@string/done"
+                            android:textColor="@android:color/black"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textSize="@dimen/sp_eighteen"/>
+                </RelativeLayout>
+
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="@dimen/dp_twenty"
+                        android:gravity="center">
+                    <ImageView android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:src="@drawable/ic_nfc_detected"
+                               android:layout_gravity="center"/>
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/detected"
+                            android:layout_marginTop="@dimen/dp_tweleve"
+                            android:textColor="@android:color/black"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textSize="@dimen/sp_sixteen"/>
+
+                </LinearLayout>
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewMessage"
+                        android:layout_marginTop="@dimen/dp_twenty_four"
+                        android:text="@string/checkpoint_scanned"
+                        android:textColor="@android:color/black"
+                        android:gravity="center"
+                        android:layout_marginBottom="@dimen/dp_sixteen"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="@dimen/sp_fourteen"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000"
+        android:gravity="center">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:elevation="0dp"
+            android:layout_margin="@dimen/dp_eight"
+            android:orientation="vertical">
+
+
+        <RelativeLayout
+                android:layout_width="@dimen/dp_one_twenty"
+                android:layout_height="@dimen/dp_one_twenty"
+                android:background="@drawable/bg_black_circle">
+
+            <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                    android:layout_width="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/circularProgress"
+                    app:cpb_progress="80"
+                    app:cpb_background_progressbar_color="@color/colorGray"
+                    app:cpb_background_progressbar_width="@dimen/dp_four"
+                    app:cpb_progressbar_color="@color/colorRed"
+                    app:cpb_progressbar_width="@dimen/dp_four"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textViewSOSEvent"
+                    android:text="SOS"
+                    android:textColor="@android:color/white"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textSize="@dimen/sp_thirty_two"/>
+
+        </RelativeLayout>
+
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_twenty_four"
+                android:text="@string/sos_event_will_be_sent_in"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_fourteen"
+
+        />
+
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/sp_tweleve">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15 "
+                    android:includeFontPadding="false"
+                    android:id="@+id/textViewTime"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/colorRed"
+                    android:textSize="@dimen/sp_thirty_two"
+            />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="sec"
+                    android:includeFontPadding="false"
+                    android:padding="@dimen/dp_four"
+                    android:layout_alignBottom="@+id/textViewTime"
+                    android:layout_toRightOf="@+id/textViewTime"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/colorRed"
+                    android:textSize="@dimen/sp_fourteen"
+            />
+        </RelativeLayout>
+
+        <Button
+                android:layout_width="@dimen/dp_two_hundered"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonCancel"
+                android:text="@string/cancel"
+                android:padding="@dimen/dp_eight"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="@dimen/sp_tweleve"
+                android:layout_marginLeft="@dimen/dp_sixteen"
+                android:layout_marginRight="@dimen/dp_sixteen"
+                android:layout_marginBottom="@dimen/dp_sixteen"
+                android:background="@drawable/selector_bg_white_eight_dp_round"
+                android:fontFamily="@font/roboto_bold"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_sixteen"
+                android:textAllCaps="true"/>
+    </LinearLayout>
+</RelativeLayout>

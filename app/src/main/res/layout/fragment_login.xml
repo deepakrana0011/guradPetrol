@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+                name="loginViewModel"
+                type="com.patrol.guard.guardpatrol.viewModel.LoginViewModel" />
+    </data>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none">
+
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none"
+                    android:orientation="vertical"
+            >
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/dp_sixteen"
+                        android:gravity="center_horizontal"
+                        android:paddingBottom="@dimen/dp_twenty_eight"
+                        android:background="@color/colorPrimary"
+                >
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textViewLoginAccessTo"
+                            android:text="@string/login_access_to"
+                            android:textColor="@android:color/white"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textSize="@dimen/sp_eighteen"
+                    />
+
+                    <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_eight"
+                            android:src="@drawable/ic_login_logo"
+                    />
+
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textViewGuradPatrol"
+                            android:fontFamily="@font/roboto_bold"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/sp_twenty_four"
+                    />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textViewAGuide"
+                            android:layout_below="@+id/textViewGuradPatrol"
+                            android:text="@string/a_utility_tool_for_the_guards_while_patrolling"
+                            android:textAllCaps="false"
+                            android:layout_marginTop="@dimen/dp_eight"
+                            android:fontFamily="@font/roboto_regular"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="@dimen/sp_sixteen"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="@dimen/dp_sixteen"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/dp_sixteen">
+
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp_eight"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/sp_sixteen"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="@string/enter_your_id_and_pin_to_get_access"
+                    />
+
+
+                    <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/editTextGuardNumber"
+                            android:layout_marginTop="@dimen/dp_fourty"
+                            android:text="@={loginViewModel.guardId}"
+                            android:background="@drawable/bottom_line_light_gray_drawable"
+                            android:layout_marginLeft="@dimen/dp_sixty"
+                            android:hint="@string/guard_id_number"
+                            android:gravity="center"
+                            android:inputType="textEmailAddress"
+                            android:textColor="@android:color/black"
+                            android:paddingBottom="@dimen/dp_eight"
+                            android:textSize="@dimen/sp_fourteen"
+                            android:fontFamily="@font/roboto_regular"
+                            android:layout_marginRight="@dimen/dp_sixty"
+                    />
+
+                    <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/editTextPin"
+                            android:layout_marginTop="@dimen/dp_twenty_four"
+                            android:background="@drawable/bottom_line_light_gray_drawable"
+                            android:layout_marginLeft="@dimen/dp_sixty"
+                            android:hint="@string/_4_6_digits_pin"
+                            android:gravity="center"
+                            android:text="@={loginViewModel.guardPin}"
+                            android:textColor="@android:color/black"
+                            android:paddingBottom="@dimen/dp_eight"
+                            android:inputType="phone"
+                            android:textSize="@dimen/sp_fourteen"
+                            android:fontFamily="@font/roboto_regular"
+                            android:layout_marginRight="@dimen/dp_sixty"
+                    />
+
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textViewForgotPin"
+                            android:text="@string/forgot_pin"
+                            android:layout_marginTop="@dimen/dp_twenty_four"
+                            android:textColor="@android:color/black"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textSize="@dimen/sp_eighteen"/>
+
+
+                   <!-- android:onClick="@{(view) -> loginViewModel.funtionClick()}"-->
+                        <Button
+                                android:layout_width="@dimen/dp_two_hundered"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/buttonLogin"
+                                android:text="@string/login"
+                                android:layout_marginBottom="@dimen/dp_four"
+                                android:padding="@dimen/dp_eight"
+                                android:fontFamily="@font/roboto_bold"
+                                android:gravity="center"
+                                android:onClick="@{loginViewModel::funtionClick}"
+                                android:layout_marginTop="@dimen/dp_twenty_four"
+                                android:background="@drawable/selector_bg_black_eight_dp_round"
+                                android:textColor="@android:color/white"
+                                android:textSize="@dimen/sp_sixteen"
+                                android:textAllCaps="true"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</layout>

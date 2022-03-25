@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+        <variable name="homeViewModel"
+                  type="com.patrol.guard.guardpatrol.viewModel.HomeViewModel"/>
+
+
+        <variable name="tourDetail" type="com.patrol.guard.guardpatrol.model.guardTour.Tour"/>
+        <variable name="message" type="String"/>
+        <variable name="guardId" type="String"/>
+
+        <variable name="dateFunctions" type="com.patrol.guard.guardpatrol.utils.DateFunctions"/>
+
+        <import type="android.view.View"/>
+
+    </data>
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/refreshLayoutView">
+        <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:visibility='@{message.equals("")?View.VISIBLE:View.GONE}'
+                android:overScrollMode="never">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:descendantFocusability="blocksDescendants"
+                        android:orientation="vertical">
+                    <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-20dp"
+                            app:cardElevation="@dimen/dp_four"
+                            app:cardCornerRadius="@dimen/dp_tweleve"
+                            app:cardUseCompatPadding="true">
+
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="@dimen/dp_tweleve"
+                                android:gravity="center"
+                                android:orientation="vertical"
+                        >
+
+                            <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dp_eight">
+                                <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="0.40"
+                                >
+
+                                    <LinearLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:orientation="vertical"
+                                    >
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:id="@+id/textViewTodaysTour"
+                                                android:text="@string/today_s_tour_for"
+                                                android:fontFamily="@font/roboto_regular"
+                                                android:textColor="@android:color/black"
+                                                android:textSize="@dimen/sp_sixteen"
+                                        />
+
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text="@{guardId}"
+                                                android:textColor="@color/colorDarkGray"
+                                                android:fontFamily="@font/roboto_bold"
+                                                android:textSize="@dimen/sp_twenty"
+                                        />
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center_vertical"
+                                        android:layout_weight="0.75">
+                                    <RelativeLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal"
+                                    >
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:id="@+id/textViewTime"
+                                                android:text="@{dateFunctions.currentTime}"
+                                                android:fontFamily="@font/roboto_regular"
+                                                android:textColor="@color/colorBlue"
+                                                android:textSize="@dimen/sp_thirty_two"
+                                        />
+                                        <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:id="@+id/textViewTimeAMPM"
+                                                android:text="@{dateFunctions.amOrpm()}"
+                                                android:layout_toRightOf="@+id/textViewTime"
+                                                android:fontFamily="@font/roboto_bold"
+                                                android:textColor="@color/colorBlue"
+                                        />
+                                    </RelativeLayout>
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dp_tweleve"
+
+                            >
+
+                                <LinearLayout android:layout_width="match_parent"
+                                              android:layout_height="wrap_content"
+                                              android:orientation="vertical"
+                                              android:layout_marginRight="@dimen/dp_eight"
+                                              android:layout_weight="0.40">
+
+                                    <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/zone"
+                                            android:id="@+id/textViewZone"
+                                            android:textColor="@android:color/black"
+                                            android:fontFamily="@font/roboto_bold"
+                                            android:textSize="@dimen/sp_fourteen"
+                                    />
+
+                                    <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/textViewDutyAddress"
+                                            android:text="@{tourDetail.postId.address}"
+                                            android:layout_marginTop="@dimen/dp_eight"
+                                            android:textColor="@color/colorDarkGray"
+                                            android:fontFamily="@font/roboto_regular"
+                                            android:textSize="@dimen/sp_tweleve"/>
+
+                                </LinearLayout>
+
+
+                                <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical"
+                                        android:layout_weight="0.75">
+                                    <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:text="@string/duty_hours"
+                                            android:id="@+id/textViewDutyHours"
+                                            android:maxLines="1"
+                                            android:ellipsize="end"
+                                            android:textColor="@android:color/black"
+                                            android:fontFamily="@font/roboto_bold"
+                                            android:textSize="@dimen/sp_fourteen"
+
+                                    />
+                                    <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/textViewDutyDate"
+                                            android:layout_alignParentRight="true"
+                                            android:layout_marginTop="@dimen/dp_eight"
+                                            android:textColor="@color/colorDarkGray"
+                                            android:fontFamily="@font/roboto_regular"
+                                            android:text="@{dateFunctions.getDateFromTimeStamp(tourDetail.date)}"
+                                            android:textSize="@dimen/sp_tweleve"/>
+
+                                    <!--android:text="@{dateFunctions.getDateFromTimeStamp(tourDetail.date)}"-->
+
+                                    <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/textViewDutyTime"
+                                            android:layout_alignParentRight="true"
+                                            android:layout_marginTop="@dimen/dp_eight"
+                                            android:textColor="@color/colorDarkGray"
+                                            android:fontFamily="@font/roboto_regular"
+                                            android:text='@{dateFunctions.get12HoursFormat(tourDetail.startTime)+"-"+dateFunctions.get12HoursFormat(tourDetail.endTime)}'
+                                            android:textSize="@dimen/sp_tweleve"/>
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <View android:layout_width="@dimen/dp_sixty"
+                                  android:layout_height="5dp"
+                                  android:background="@drawable/bg_light_gray_all_side_four_dp"
+                                  android:layout_marginTop="@dimen/dp_sixteen"/>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:nestedScrollingEnabled="false"
+                            android:paddingTop="@dimen/dp_tweleve"
+                            android:paddingLeft="@dimen/dp_tweleve"
+                            android:paddingRight="@dimen/dp_tweleve"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            android:id="@+id/recyclerViewDutyProgress">
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/errorMessage"
+                  android:layout_centerInParent="true"
+                  android:visibility='@{message.equals("")?View.GONE:View.VISIBLE}'
+                  android:textColor="@color/colorRed"
+                  android:textSize="@dimen/sp_eighteen"
+                  android:text="@{message}"
+                  android:fontFamily="@font/roboto_regular"
+        />
+    </RelativeLayout>
+
+</layout>
+

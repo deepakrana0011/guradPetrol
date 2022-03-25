@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable name="messageViewModel" type="com.patrol.guard.guardpatrol.viewModel.MessageActivityViewModel"/>
+
+    </data>
+
+    <LinearLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="false"
+            android:id="@+id/rootLayout"
+            android:focusableInTouchMode="true"
+            android:background="@android:color/white"
+            android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:stateListAnimator="@null"
+                android:elevation="@dimen/dp_eight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:contentInsetStart="0dp"
+                    android:contentInsetLeft="0dp"
+                    android:contentInsetEnd="0dp"
+                    android:contentInsetRight="0dp"
+                    app:contentInsetEnd="0dp"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetRight="0dp"
+                    app:contentInsetStart="0dp"/>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    android:fillViewport="true"
+                    android:layout_above="@+id/relativeLayoutBottom"
+                    android:scrollbars="none">
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dp_sixteen">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textViewSelectIncidents"
+                                android:text="@string/select_incidents"
+                                android:layout_centerVertical="true"
+                                android:visibility="gone"
+                                android:fontFamily="@font/roboto_bold"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/sp_sixteen"/>
+
+                        <LinearLayout android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:id="@+id/linearLayoutNearestCheckPoint"
+                                      android:gravity="center_vertical"
+                                      android:layout_alignParentRight="true">
+                            <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/assign_nearest_checkpoint"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="@dimen/sp_tweleve"/>
+
+                            <androidx.appcompat.widget.SwitchCompat
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/switchButtonNearestCheckPoint"
+                                    android:layout_marginLeft="@dimen/dp_eight"
+                                    android:onCheckedChanged="@{messageViewModel::checkBoxChanged}"
+                                    android:theme="@style/customeSwitch"
+                            />
+                        </LinearLayout>
+                    </RelativeLayout>
+                    <RadioGroup
+                            android:layout_width="@dimen/dp_two_fifty"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_centerHorizontal="true"
+                            android:layout_below="@+id/textViewSelectIncidents"
+                    >
+
+                        <RadioButton
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/radioButtonImage"
+                                android:button="@null"
+                                android:textColor="@color/radio_button_text_color_selector"
+                                android:padding="@dimen/dp_tweleve"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="@string/image"
+                                android:gravity="center"
+                                android:textAllCaps="true"
+                                android:background="@drawable/selector_radio_button_lt_lb_round"
+                                android:layout_weight="1"
+                        />
+
+                        <RadioButton
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/radioButtonAudio"
+                                android:padding="@dimen/dp_tweleve"
+                                android:button="@null"
+                                android:text="@string/audio"
+                                android:gravity="center"
+                                android:textAllCaps="true"
+                                android:layout_marginLeft="-2dp"
+                                android:textColor="@color/radio_button_text_color_selector"
+                                android:fontFamily="@font/roboto_bold"
+                                android:background="@drawable/selector_radio_button_rt_rb_round"
+                                android:layout_weight="1"/>
+                    </RadioGroup>
+
+                    <!-- <FrameLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="@dimen/dp_three_hundered"
+                             android:id="@+id/frameLayout"></FrameLayout>-->
+
+                    <androidx.viewpager.widget.ViewPager
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_three_hundered"
+                            android:layout_marginTop="@dimen/dp_twenty_four"
+                            android:id="@+id/viewPager"
+                    >
+                    </androidx.viewpager.widget.ViewPager>
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp_eight"
+                            android:layout_marginRight="@dimen/dp_eight">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textView"
+                                android:textSize="@dimen/sp_sixteen"
+                                android:textColor="@android:color/black"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="@string/text_message"/>
+
+                        <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp_one_twenty"
+                                app:cardCornerRadius="@dimen/dp_tweleve"
+                                app:cardUseCompatPadding="true"
+                                android:layout_margin="@dimen/dp_eight"
+                                android:layout_marginTop="@dimen/dp_four"
+                                android:layout_below="@+id/textView">
+                            <EditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@null"
+                                    android:gravity="start"
+                                    android:textSize="@dimen/sp_fourteen"
+                                    android:maxLength="5000"
+                                    android:text="@={messageViewModel.message}"
+                                    android:textColor="@android:color/black"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:hint="Type in your message within 5000 chars"
+                                    android:padding="@dimen/dp_eight"
+                            />
+
+                        </androidx.cardview.widget.CardView>
+
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+            </ScrollView>
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_seventy"
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/relativeLayoutBottom">
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_sixty"
+
+                        android:background="@android:color/black"
+                        android:layout_alignParentBottom="true">
+
+
+                    <ImageView
+                            android:layout_width="@dimen/dp_fifty"
+                            android:layout_height="@dimen/dp_fifty"
+                            android:id="@+id/imageViewTorch"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_torch"/>
+                    <ImageView
+                            android:layout_width="@dimen/dp_fifty"
+                            android:layout_height="@dimen/dp_fifty"
+                            android:id="@+id/imageViewSos"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:src="@drawable/ic_sos_red_border"/>
+                </RelativeLayout>
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/dp_fifty"
+                        android:layout_marginRight="@dimen/dp_fifty">
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/relativeLayoutIncidents"
+                            android:onClick="@{messageViewModel::sendIncidentClick}"
+                            android:background="@drawable/bg_black_tl_tr_corner_round"
+                            android:layout_marginRight="@dimen/dp_four"
+                            android:layout_weight="1">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:includeFontPadding="false"
+                                android:layout_marginBottom="@dimen/dp_twenty"
+                                android:textAllCaps="true"
+                                android:textSize="@dimen/sp_fourteen"
+                                android:textColor="@color/colorBlue"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="@string/incidents"
+                        />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/dp_four"
+                            android:onClick="@{messageViewModel::sendMessageClick}"
+                            android:background="@drawable/bg_green_tl_tr_corner_round"
+                            android:layout_weight="1">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:layout_centerHorizontal="true"
+                                android:includeFontPadding="false"
+                                android:layout_marginBottom="@dimen/dp_twenty"
+                                android:textAllCaps="true"
+                                android:textSize="@dimen/sp_fourteen"
+                                android:textColor="@android:color/white"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="@string/send_messages"/>
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</layout>
