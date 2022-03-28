@@ -1,6 +1,7 @@
 package com.patrol.guard.guardpatrol.model.scanCheckPoint
 
 import com.google.gson.annotations.SerializedName
+import com.patrol.guard.guardpatrol.model.LocationData
 
 class ScanCheckPointDetailToServer {
 
@@ -20,5 +21,11 @@ class ScanCheckPointDetailToServer {
 
     @SerializedName("nextUpdateId")
     var nextUpdateId:String?=null
+
+    @SerializedName("location")
+    var location:ArrayList<LocationData>?=null
+
+
+
 
 }

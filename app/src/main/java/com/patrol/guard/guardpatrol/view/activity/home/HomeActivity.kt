@@ -4,27 +4,22 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.view.GravityCompat
-import androidx.databinding.DataBindingUtil
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.birjuvachhani.locus.Locus
+import com.google.android.gms.location.LocationRequest
 import com.patrol.guard.guardpatrol.R
-import com.patrol.guard.guardpatrol.utils.Constants
-import com.patrol.guard.guardpatrol.utils.FragmentFunctions
-import com.patrol.guard.guardpatrol.utils.FrequentFunctions
-import com.patrol.guard.guardpatrol.utils.LocationInternetFunctions
+import com.patrol.guard.guardpatrol.utils.*
+import com.patrol.guard.guardpatrol.utils.location.LocationService
 import com.patrol.guard.guardpatrol.view.activity.BaseActivity
 import com.patrol.guard.guardpatrol.view.activity.home.adapter.NavigationAdapter
 import com.patrol.guard.guardpatrol.view.activity.incidents.IncidentsActivity
@@ -33,13 +28,17 @@ import com.patrol.guard.guardpatrol.view.fragment.about.AboutFragment
 import com.patrol.guard.guardpatrol.view.fragment.history.HistoryFragment
 import com.patrol.guard.guardpatrol.view.fragment.homFragment.HomeFragment
 import com.patrol.guard.guardpatrol.view.fragment.setting.SettingFragment
+import com.patrol.guard.guardpatrol.viewModel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.ext.android.inject
 
 class HomeActivity : BaseActivity(), NavigationAdapter.ClickListnerHandler, View.OnClickListener {
     val fragmentFunctions: FragmentFunctions by inject()
+    val sharedPref: SharedPref by inject()
     lateinit var activity: Activity
+    var startServiceEnable= false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -49,11 +48,20 @@ class HomeActivity : BaseActivity(), NavigationAdapter.ClickListnerHandler, View
         } else {
             setGoogleClient()
         }
+
+        val request = LocationRequest.create()
+        Intent(this, HomeActivity::class.java).apply {
+            putExtra("request", request)
+        }
+        Locus.setLogging(true)
+        Locus.configure {  }
         checkLatLong()
         setUpClickListeners()
         setUpData()
         setUpToolBar()
+        homeViewModel.fetchSosNumber()
     }
+
 
     private fun setUpClickListeners() {
         relativeLayoutIncidents.setOnClickListener(this)
@@ -65,6 +73,73 @@ class HomeActivity : BaseActivity(), NavigationAdapter.ClickListnerHandler, View
     private fun setUpToolBar() {
         customToolBarWithMenu(toolBar, drawer_layout)
     }
+
+     public fun getSingleUpdate() {
+        Locus.getCurrentLocation(this) { result ->
+            result.location?.let {
+
+                Log.e("latitude", it.latitude.toString()+"=>"+ it.longitude.toString())
+
+            } ?: run {
+                Log.e("latitude", result.error?.message.toString())
+            }
+        }
+    }
+
+   public fun startUpdates() {
+       val request = LocationRequest.create()
+       request.interval= 5000L
+       request.maxWaitTime = 5000L
+       request.maxWaitTime = 5000L
+
+        Locus.configure {
+            locationRequest = request
+            enableBackgroundUpdates = true
+            forceBackgroundUpdates = true
+            shouldResolveRequest = true
+
+
+        }
+        Locus.startLocationUpdates(this) { result ->
+            result.location?.let(::onLocationUpdate)
+            result.error?.let(::onError)
+        }
+    }
+
+    private fun onLocationUpdate(location: Location) {
+        BasicFunctions.addLocationData(location.latitude, location.longitude, sharedPref)
+        Log.e("Location", "Latitude: ${location.latitude}\tLongitude: ${location.longitude}")
+    }
+
+    private fun onError(error: Throwable?) {
+      //  binding.btnStart.isEnabled = true
+        Log.e("Location", "Error: ${error?.message}")
+    }
+
+
+    fun stopUpdates() {
+        Locus.stopLocationUpdates()
+    }
+
+    fun startLocationService() {
+        startService(Intent(this, LocationService::class.java))
+
+
+       // finish()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        stopService(Intent(this, LocationService::class.java));
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (startServiceEnable) {
+            startLocationService()
+        }
+    }
+
 
     fun setUpData() {
         textViewGuardPatrol.setText(
@@ -187,14 +262,14 @@ class HomeActivity : BaseActivity(), NavigationAdapter.ClickListnerHandler, View
     }
 
 
-    fun turnOnOffFlashLight() {
+  /*  fun turnOnOffFlashLight() {
         if (!frequentFunctions.isFlashLightOn) {
             frequentFunctions.turnOnTheLight(this@HomeActivity)
         } else {
             frequentFunctions.turnOfFlashLight()
         }
 
-    }
+    }*/
 
     fun checkLatLong() {
         val handler = Handler()

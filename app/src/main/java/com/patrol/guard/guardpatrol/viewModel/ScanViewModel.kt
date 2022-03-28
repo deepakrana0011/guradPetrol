@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.patrol.guard.guardpatrol.model.scanCheckPoint.ScanCheckPointDetailToServer
 import com.patrol.guard.guardpatrol.model.scanCheckPoint.ScanCheckPointResponse
 import com.patrol.guard.guardpatrol.repositry.WebServices
+import com.patrol.guard.guardpatrol.utils.BasicFunctions
 import com.patrol.guard.guardpatrol.utils.FrequentFunctions
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,6 +34,7 @@ class ScanViewModel(webServices: WebServices,frequentFunctions: FrequentFunction
         detailToServer.updateId=checkPointId
         detailToServer.nextUpdateId=nextUpdatedId
         detailToServer.qrScan=scanData
+        detailToServer.location = BasicFunctions.locationArrayList
 
 
         progressBar.value = true

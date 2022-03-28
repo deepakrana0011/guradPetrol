@@ -1,5 +1,7 @@
 package com.patrol.guard.guardpatrol.repositry
 
+import com.patrol.guard.guardpatrol.model.about.AboutResponse
+import com.patrol.guard.guardpatrol.model.about.SendSosNumber
 import com.patrol.guard.guardpatrol.model.endTrip.EndDetailToServer
 import com.patrol.guard.guardpatrol.model.endTrip.EndTripResponse
 import com.patrol.guard.guardpatrol.model.getIncidentsList.GetIncidentsList
@@ -16,6 +18,7 @@ import com.patrol.guard.guardpatrol.model.startTrip.StartTripResponse
 import com.patrol.guard.guardpatrol.model.uploadAudio.UploadAudioResponse
 import com.patrol.guard.guardpatrol.model.uploadImage.UploadImageResponse
 import okhttp3.MultipartBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -58,4 +61,10 @@ interface Api {
     @Multipart
     @POST("audio")
     fun uploadAudio( @Part profileImage: MultipartBody.Part?):Call<UploadAudioResponse>
+
+    @GET("about")
+    fun about(): Call<AboutResponse>
+
+    @POST("sos")
+    fun sosNumber(@Body sendSosNumber: SendSosNumber): Call<ResponseBody>
 }

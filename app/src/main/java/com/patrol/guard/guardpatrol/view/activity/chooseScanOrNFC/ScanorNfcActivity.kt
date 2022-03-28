@@ -55,8 +55,8 @@ class ScanorNfcActivity : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan_or_nfc)
         customToolBarWithBack(toolBar, getString(R.string.scan))
-        checkPointId = intent.getStringExtra("checkPointId")
-        nextCheckPointId = intent.getStringExtra("nextCheckPointId")
+        checkPointId = intent.getStringExtra("checkPointId")!!
+        nextCheckPointId = intent.getStringExtra("nextCheckPointId")!!
         isNfc = intent.getBooleanExtra("isNfc", false)
         isQr = intent.getBooleanExtra("isQr", false)
         setData()
@@ -89,22 +89,32 @@ class ScanorNfcActivity : BaseActivity(), View.OnClickListener {
         }
 
         buttonNfcTag.setOnClickListener {
-            if (mNfcAdapter!!.isEnabled) {
-                val tagDetected = IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED)
-                val ndefDetected = IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED)
-                val techDetected = IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED)
-                val nfcIntentFilter = arrayOf(techDetected, tagDetected, ndefDetected)
-                val pendingIntent =
-                    PendingIntent.getActivity(
-                        this,
-                        0,
-                        Intent(this, javaClass).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP),
-                        0
-                    )
-                if (mNfcAdapter != null)
-                    mNfcAdapter!!.enableForegroundDispatch(this, pendingIntent, nfcIntentFilter, null)
-                nfcScanDialog()
-            } else {
+            if(mNfcAdapter!=null) {
+                if (mNfcAdapter!!.isEnabled) {
+                    val tagDetected = IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED)
+                    val ndefDetected = IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED)
+                    val techDetected = IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED)
+                    val nfcIntentFilter = arrayOf(techDetected, tagDetected, ndefDetected)
+                    val pendingIntent =
+                        PendingIntent.getActivity(
+                            this,
+                            0,
+                            Intent(this, javaClass).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP),
+                            0
+                        )
+                    if (mNfcAdapter != null)
+                        mNfcAdapter!!.enableForegroundDispatch(
+                            this,
+                            pendingIntent,
+                            nfcIntentFilter,
+                            null
+                        )
+                    nfcScanDialog()
+                } else {
+                    alertDialog()
+                }
+            }
+            else{
                 alertDialog()
             }
         }
@@ -136,15 +146,15 @@ class ScanorNfcActivity : BaseActivity(), View.OnClickListener {
         alertDialogBuilder.setView(view)
         mDialog = alertDialogBuilder.create()
         mDialog.setCancelable(false)
-        mDialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        mDialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         mDialog.show()
         val lp = WindowManager.LayoutParams()
         val window = mDialog.getWindow()
-        window.setGravity(Gravity.CENTER)
-        lp.copyFrom(window.getAttributes())
+        window?.setGravity(Gravity.CENTER)
+        lp.copyFrom(window?.getAttributes())
         lp.width = WindowManager.LayoutParams.MATCH_PARENT
         lp.height = WindowManager.LayoutParams.MATCH_PARENT
-        window.setAttributes(lp)
+        window?.setAttributes(lp)
     }
 
     override fun onResume() {
@@ -157,6 +167,7 @@ class ScanorNfcActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
         val tag = intent.getParcelableExtra<Tag>(NfcAdapter.EXTRA_TAG)
         if (tag != null) {
             val ndef = Ndef.get(tag)
@@ -184,6 +195,7 @@ class ScanorNfcActivity : BaseActivity(), View.OnClickListener {
         detailToServer.updateId = checkPointId
         detailToServer.nextUpdateId = nextCheckPointId
         detailToServer.nfcScan = scanData
+        detailToServer.location = BasicFunctions.locationArrayList
 
 
         basicFunctions.showProgressBar(this, getString(R.string.loading))
@@ -238,14 +250,6 @@ class ScanorNfcActivity : BaseActivity(), View.OnClickListener {
     }
 
 
-    fun turnOnOffFlashLight() {
-        if (!frequentFunctions.isFlashLightOn) {
-            frequentFunctions.turnOnTheLight(this@ScanorNfcActivity)
-        } else {
-            frequentFunctions.turnOfFlashLight()
-        }
-
-    }
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>, grantResults: IntArray

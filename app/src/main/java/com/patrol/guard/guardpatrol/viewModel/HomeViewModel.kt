@@ -115,6 +115,8 @@ class HomeViewModel(webServices: WebServices, frequentFunctions: FrequentFunctio
         detailToServer.latitude = latitude
         detailToServer.longitude = longitude
         detailToServer.updateId = tourId
+        detailToServer.location = BasicFunctions.locationArrayList
+
 
         webServices.endTrip(detailToServer).enqueue(object : Callback<EndTripResponse> {
             override fun onResponse(call: Call<EndTripResponse>, response: Response<EndTripResponse>) {

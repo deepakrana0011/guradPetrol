@@ -1,7 +1,8 @@
 package com.patrol.guard.guardpatrol.repositry
 
 import android.app.Application
-import android.content.SharedPreferences
+import com.patrol.guard.guardpatrol.model.about.AboutResponse
+import com.patrol.guard.guardpatrol.model.about.SendSosNumber
 import com.patrol.guard.guardpatrol.model.endTrip.EndDetailToServer
 import com.patrol.guard.guardpatrol.model.endTrip.EndTripResponse
 import com.patrol.guard.guardpatrol.model.getIncidentsList.GetIncidentsList
@@ -19,10 +20,7 @@ import com.patrol.guard.guardpatrol.model.uploadAudio.UploadAudioResponse
 import com.patrol.guard.guardpatrol.model.uploadImage.UploadImageResponse
 import com.patrol.guard.guardpatrol.utils.Constants
 import com.patrol.guard.guardpatrol.utils.SharedPref
-import okhttp3.MediaType
-import okhttp3.MultipartBody
-import okhttp3.OkHttpClient
-import okhttp3.RequestBody
+import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -119,6 +117,16 @@ class WebServices(var context: Application, var sharedPref: SharedPref) {
             part = MultipartBody.Part.createFormData("audio", file.name, requestBodies)
         }
         val call = api.uploadAudio(part)
+        return call
+    }
+
+    fun fetchSosNumber(): Call<AboutResponse> {
+        val call = api.about()
+        return call
+    }
+
+    fun submitSosNumber(sendSosNumber: SendSosNumber): Call<ResponseBody> {
+        val call = api.sosNumber(sendSosNumber)
         return call
     }
 }

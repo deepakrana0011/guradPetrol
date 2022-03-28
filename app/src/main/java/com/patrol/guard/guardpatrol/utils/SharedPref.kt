@@ -3,6 +3,11 @@ package com.patrol.guard.guardpatrol.utils
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.patrol.guard.guardpatrol.model.LocationData
+import java.lang.reflect.Type
+
 
 class SharedPref(context: Application) {
     public val sharedpreferences: SharedPreferences
@@ -16,7 +21,7 @@ class SharedPref(context: Application) {
     }
 
     fun getString(name: String): String {
-        return sharedpreferences.getString(name, "")
+        return sharedpreferences.getString(name, "").toString()
     }
 
     fun setBoolean(name: String, value: Boolean?) {
@@ -26,6 +31,37 @@ class SharedPref(context: Application) {
     fun getBoolean(name: String): Boolean {
         return sharedpreferences.getBoolean(name, false)
     }
+
+    fun setLocationArray() {
+        val gson = Gson()
+        val json = gson.toJson(BasicFunctions.locationArrayList)
+        sharedpreferences.edit().putString("locationArray", json).commit()
+
+    }
+
+
+    fun getLocationArray() {
+        BasicFunctions.locationArrayList  = ArrayList()
+        val gson = Gson()
+        val json: String = sharedpreferences.getString("locationArray", "")?:""
+        if (json.isNotEmpty()) {
+            val type: Type = object : TypeToken<List<LocationData?>?>() {}.type
+            val arrayList: List<LocationData> = gson.fromJson<List<LocationData>>(json, type)
+            if (arrayList.isNotEmpty()) {
+                BasicFunctions.locationArrayList = arrayList as ArrayList<LocationData>
+            }
+        }
+
+    }
+
+    fun clearLocationData(){
+        BasicFunctions.locationArrayList = ArrayList()
+        val gson = Gson()
+        val json = gson.toJson(BasicFunctions.locationArrayList)
+        sharedpreferences.edit().putString("locationArray", json).commit()
+
+    }
+
 
 
     fun clear() {

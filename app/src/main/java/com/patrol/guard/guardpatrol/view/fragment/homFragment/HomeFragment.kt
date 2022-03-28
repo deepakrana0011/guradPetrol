@@ -1,17 +1,10 @@
 package com.patrol.guard.guardpatrol.view.fragment.homFragment
 
 import android.Manifest
-import android.app.Activity
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
-import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,9 +19,9 @@ import com.google.android.gms.location.GeofencingRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
-import com.google.gson.Gson
 import com.patrol.guard.guardpatrol.R
 import com.patrol.guard.guardpatrol.databinding.FragmentHomeBinding
+import com.patrol.guard.guardpatrol.model.LocationData
 import com.patrol.guard.guardpatrol.model.endTrip.EndTripResponse
 import com.patrol.guard.guardpatrol.model.guardTour.CheckPoint
 import com.patrol.guard.guardpatrol.model.guardTour.GuardTourResponse
@@ -39,6 +32,7 @@ import com.patrol.guard.guardpatrol.utils.*
 import com.patrol.guard.guardpatrol.utils.geoFencing.GeofenceBroadcastReceiver
 import com.patrol.guard.guardpatrol.view.activity.BaseActivity
 import com.patrol.guard.guardpatrol.view.activity.chooseScanOrNFC.ScanorNfcActivity
+import com.patrol.guard.guardpatrol.view.activity.home.HomeActivity
 import com.patrol.guard.guardpatrol.view.fragment.BaseFragment
 import com.patrol.guard.guardpatrol.view.fragment.homFragment.adapter.HomeFragmentAdapter
 import com.patrol.guard.guardpatrol.viewModel.HomeViewModel
@@ -67,8 +61,11 @@ class HomeFragment : BaseFragment(), HomeFragmentAdapter.ItemClickListener, OnCo
         binding = DataBindingUtil.inflate<FragmentHomeBinding>(inflater, R.layout.fragment_home, container, false)
         binding!!.guardId = sharedPref.getString(Constants.GUARD_ID)
         homeViewModel.getGuardTour(BaseActivity.latitude, BaseActivity.longtiude, true)
+
         mGeofencingClient = LocationServices.getGeofencingClient(activity!!)
-       // registerBroadCastReciever()
+       // registerBroadCa
+        // stReciever()
+
 
         return binding!!.root
     }
@@ -78,6 +75,11 @@ class HomeFragment : BaseFragment(), HomeFragmentAdapter.ItemClickListener, OnCo
         setData()
         initiateObserver()
         refreshLayout()
+
+        var location= sharedPref.getLocationArray()
+
+     //   BasicFunctions.locationArrayList = ArrayList()
+
     }
 
 
@@ -122,6 +124,12 @@ class HomeFragment : BaseFragment(), HomeFragmentAdapter.ItemClickListener, OnCo
 
 
                 var currentCheckPointPosition=response.tour!!.checkPointPosition!!
+                clearLocationData(response)
+                if (currentCheckPointPosition>0){
+                    (activity as HomeActivity?)?.getSingleUpdate()
+                    (activity as HomeActivity?)?.startUpdates()
+                    setServiceEnable(true)
+                }
                 if(response!!.tour!!.status==1){
                     AllLocalHandler.singleTripDetail.tripId=response!!.tour!!.id!!
                     AllLocalHandler.singleTripDetail.currentCheckPoint=response.tour!!.checkPoints!!.get(currentCheckPointPosition).id
@@ -140,12 +148,18 @@ class HomeFragment : BaseFragment(), HomeFragmentAdapter.ItemClickListener, OnCo
 
         homeViewModel.onSuccessfullyStartTrip.observe(viewLifecycleOwner, object : Observer<StartTripResponse> {
             override fun onChanged(response: StartTripResponse?) {
+                setServiceEnable(true)
+                (activity as HomeActivity?)?.getSingleUpdate()
+                (activity as HomeActivity?)?.startUpdates()
                 homeViewModel.getGuardTour(BaseActivity.latitude, BaseActivity.longtiude, true)
             }
         })
 
         homeViewModel.onSuccessfullyEndTrip.observe(viewLifecycleOwner, object : Observer<EndTripResponse> {
             override fun onChanged(response: EndTripResponse?) {
+                sharedPref.clearLocationData()
+                (activity as HomeActivity?)?.stopUpdates()
+                setServiceEnable(false)
                 homeViewModel.getGuardTour(BaseActivity.latitude, BaseActivity.longtiude, true)
             }
         })
@@ -156,6 +170,30 @@ class HomeFragment : BaseFragment(), HomeFragmentAdapter.ItemClickListener, OnCo
                 homeViewModel.getGuardTour(BaseActivity.latitude, BaseActivity.longtiude,true)
             }
         })
+    }
+
+    private fun clearLocationData(response: GuardTourResponse) {
+        val currentCheckPointPosition=response.tour!!.checkPointPosition!!
+        if (currentCheckPointPosition>0){
+            val currentCheckPoint = response.tour?.checkPoints?.get(currentCheckPointPosition-1)
+            currentCheckPoint?.let {
+                val status = it.status
+                if (status==1){
+                    sharedPref.clearLocationData();
+                }
+
+            }
+        }
+
+    }
+
+    /*
+    * setServiceEnable() => In this function we are allowing to start the background service for fetching
+    * the Location data
+    * */
+    fun setServiceEnable(enable:Boolean){
+        (activity as HomeActivity?)?.startServiceEnable= enable
+
     }
 
     fun setData() {
@@ -205,6 +243,7 @@ class HomeFragment : BaseFragment(), HomeFragmentAdapter.ItemClickListener, OnCo
             }
         }
     }
+
 
     override fun endClick(position: Int) {
         if (checkPoints.get(position)!!.status == 2) {

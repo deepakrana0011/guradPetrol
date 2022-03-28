@@ -51,8 +51,8 @@ class ScannerActivity : BaseActivity() {
         customToolBarWithBack(toolBar, getString(R.string.scan))
         scannerView = findViewById<CodeScannerView>(R.id.scanner_view)
         checkCameraPermission()
-        checkPointId = intent.getStringExtra("checkPointId")
-        nextCheckPointId = intent.getStringExtra("nextCheckPointId")
+        checkPointId = intent.getStringExtra("checkPointId")!!
+        nextCheckPointId = intent.getStringExtra("nextCheckPointId")!!
 
         initiateObserver()
 
