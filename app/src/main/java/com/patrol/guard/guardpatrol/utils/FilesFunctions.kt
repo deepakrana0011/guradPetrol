@@ -1,14 +1,12 @@
 package com.example.possibility.hr.utils
 
-import android.app.Activity
 import android.content.Context
-import android.os.Environment
-import android.graphics.Bitmap
-import android.net.Uri
-import android.provider.MediaStore
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Matrix
 import android.media.ExifInterface
+import android.os.Environment
+import android.provider.MediaStore
 import android.util.Log
 import com.googlecode.mp4parser.authoring.Movie
 import com.googlecode.mp4parser.authoring.Track
@@ -40,7 +38,13 @@ object FilesFunctions {
     }
     fun createFileFromBitMap(bitmap: Bitmap):File {
         val videoFileName = Constants.APP_NAME+"-"+ System.currentTimeMillis() + ".jpg"
-        val myDirectory = File(Environment.getExternalStorageDirectory(), "GuardPatrol")
+       // val myDirectory = File(Environment.getExternalStorageDirectory(), "GuardPatrol")
+
+        val myDirectory = File(
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                .toString() + "/GuardPatrol/"
+        )
+
         if (!myDirectory.exists()) {
             myDirectory.mkdir()
         }
@@ -111,7 +115,12 @@ object FilesFunctions {
 
     fun createAudioFile(): File {
         var imageFileName = Constants.APP_NAME + "_" + System.currentTimeMillis()+".3gp"
-        storageDir = File(Environment.getExternalStorageDirectory(), "GuardPatrolAudio")
+       // storageDir = File(Environment.getExternalStorageDirectory(), "GuardPatrolAudio")
+
+        storageDir = File(
+            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                .toString() + "/GuardPatrolAudio/"
+        )
         if (!storageDir!!.exists()) {
             storageDir!!.mkdir()
         }

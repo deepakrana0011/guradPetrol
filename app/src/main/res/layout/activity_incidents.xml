@@ -128,18 +128,19 @@
 
 
                     <ImageView
-                            android:layout_width="@dimen/dp_fifty"
-                            android:layout_height="@dimen/dp_fifty"
-                            android:id="@+id/imageViewTorch"
-                            android:layout_centerVertical="true"
-                            android:src="@drawable/ic_torch"/>
+                        android:id="@+id/imageViewTorch"
+                        android:layout_width="@dimen/dp_fifty"
+                        android:layout_height="@dimen/dp_fifty"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_torch" />
+
                     <ImageView
-                            android:layout_width="@dimen/dp_fifty"
-                            android:layout_height="@dimen/dp_fifty"
-                            android:id="@+id/imageViewSos"
-                            android:layout_centerVertical="true"
-                            android:layout_alignParentRight="true"
-                            android:src="@drawable/ic_sos_red_border"/>
+                        android:id="@+id/imageViewSos"
+                        android:layout_width="@dimen/dp_fifty"
+                        android:layout_height="@dimen/dp_fifty"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_sos_red_border" />
                 </RelativeLayout>
                 <LinearLayout
                         android:layout_width="match_parent"

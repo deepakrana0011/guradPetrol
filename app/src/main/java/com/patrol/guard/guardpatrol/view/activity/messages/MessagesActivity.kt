@@ -1,10 +1,13 @@
 package com.patrol.guard.guardpatrol.view.activity.messages
 
+import android.Manifest
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -13,6 +16,7 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -24,6 +28,7 @@ import com.patrol.guard.guardpatrol.model.uploadAudio.UploadAudioResponse
 import com.patrol.guard.guardpatrol.model.uploadImage.UploadImageResponse
 import com.patrol.guard.guardpatrol.repositry.handler.AllLocalHandler
 import com.patrol.guard.guardpatrol.utils.BasicFunctions
+import com.patrol.guard.guardpatrol.utils.Constants
 import com.patrol.guard.guardpatrol.utils.FragmentFunctions
 import com.patrol.guard.guardpatrol.view.activity.BaseActivity
 import com.patrol.guard.guardpatrol.view.activity.home.HomeActivity
@@ -50,6 +55,26 @@ class MessagesActivity : BaseActivity() {
         radioButtonsClick()
         initObserver()
         setData()
+        clickEvent()
+    }
+
+    private fun clickEvent() {
+        binding.imageViewTorch.setOnClickListener {
+            val permission = arrayOf(Manifest.permission.CAMERA)
+            if (checkPermission(permission) > 0) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(permission[0]),
+                    Constants.REQUEST_PERMISSION
+                )
+            } else {
+                turnOnOffFlashLight()
+            }
+        }
+
+        binding.imageViewSos.setOnClickListener {
+            showSOSEventDialog()
+        }
     }
 
     fun setData() {
@@ -106,6 +131,46 @@ class MessagesActivity : BaseActivity() {
                 )
             }
         })
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>, grantResults: IntArray
+    ) {
+        when (requestCode) {
+            Constants.REQUEST_PERMISSION -> {
+                if (grantResults.size > 0) {
+                    if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                        dialogForCameraGallery()
+                    } else {
+                        if (Build.VERSION.SDK_INT >= 23) {
+                            val showRationale =
+                                shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                            val showRationale2 =
+                                shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
+                            val showRationale3 =
+                                shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)
+                            if (!showRationale) {
+                                alertDialogWithOKButton(
+                                    getString(R.string.permission),
+                                    getString(R.string.storagePermission)
+                                )
+                            } else if (!showRationale2) {
+                                alertDialogWithOKButton(
+                                    getString(R.string.permission),
+                                    getString(R.string.storagePermission)
+                                )
+                            } else if (!showRationale3) {
+                                alertDialogWithOKButton(
+                                    getString(R.string.permission),
+                                    getString(R.string.cameraPermission2)
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     fun setAdapter() {
@@ -165,14 +230,14 @@ class MessagesActivity : BaseActivity() {
         alertDialogBuilder.setView(view)
         mDialog = alertDialogBuilder.create()
         mDialog.setCancelable(false)
-        mDialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        mDialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         mDialog.show()
         val lp = WindowManager.LayoutParams()
         val window = mDialog.getWindow()
-        window.setGravity(Gravity.CENTER)
-        lp.copyFrom(window.getAttributes())
+        window?.setGravity(Gravity.CENTER)
+        lp.copyFrom(window?.getAttributes())
         lp.width = WindowManager.LayoutParams.MATCH_PARENT
         lp.height = WindowManager.LayoutParams.MATCH_PARENT
-        window.setAttributes(lp)
+        window?.setAttributes(lp)
     }
 }

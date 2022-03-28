@@ -40,6 +40,11 @@ import com.patrol.guard.guardpatrol.model.uploadImage.UploadImageResponse
 import com.patrol.guard.guardpatrol.repositry.handler.AllLocalHandler
 import com.patrol.guard.guardpatrol.view.activity.home.HomeActivity
 import com.patrol.guard.guardpatrol.view.activity.messages.MessagesActivity
+import kotlinx.android.synthetic.main.activity_incidents.imageViewSos
+import kotlinx.android.synthetic.main.activity_incidents.imageViewTorch
+import kotlinx.android.synthetic.main.activity_incidents.relativeLayoutIncidents
+import kotlinx.android.synthetic.main.activity_incidents.toolBar
+import kotlinx.android.synthetic.main.app_bar_home.*
 
 
 class IncidentsActivity : BaseActivity(), IncidentAdapter.ItemClickListener {
@@ -63,7 +68,29 @@ class IncidentsActivity : BaseActivity(), IncidentAdapter.ItemClickListener {
         binding.incidentViewModel = incidentViewModel
         incidentViewModel.getIncidentsList()
         setData()
+        clickEvent()
     }
+
+    private fun clickEvent() {
+
+        binding.imageViewTorch.setOnClickListener {
+            val permission = arrayOf(Manifest.permission.CAMERA)
+            if (checkPermission(permission) > 0) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(permission[0]),
+                    Constants.REQUEST_PERMISSION
+                )
+            } else {
+                turnOnOffFlashLight()
+            }
+        }
+
+        binding.imageViewSos.setOnClickListener {
+            showSOSEventDialog()
+        }
+    }
+
 
 
     fun setData() {
@@ -346,15 +373,15 @@ class IncidentsActivity : BaseActivity(), IncidentAdapter.ItemClickListener {
         alertDialogBuilder.setView(view)
         mDialog = alertDialogBuilder.create()
         mDialog.setCancelable(false)
-        mDialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        mDialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         mDialog.show()
         val lp = WindowManager.LayoutParams()
         val window = mDialog.getWindow()
-        window.setGravity(Gravity.CENTER)
-        lp.copyFrom(window.getAttributes())
+        window?.setGravity(Gravity.CENTER)
+        lp.copyFrom(window?.getAttributes())
         lp.width = WindowManager.LayoutParams.MATCH_PARENT
         lp.height = WindowManager.LayoutParams.MATCH_PARENT
-        window.setAttributes(lp)
+        window?.setAttributes(lp)
     }
 
 
