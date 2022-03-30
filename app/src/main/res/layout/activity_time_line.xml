@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+        <variable name="timelineViewModel" type="com.patrol.guard.guardpatrol.viewModel.TimelineViewModel"/>
+
+        <variable name="tourDetail" type="com.patrol.guard.guardpatrol.model.guardTour.Tour"/>
+        <variable name="message" type="String"/>
+        <variable name="guardId" type="String"/>
+
+        <variable name="dateFunctions" type="com.patrol.guard.guardpatrol.utils.DateFunctions"/>
+
+        <import type="android.view.View"/>
+    </data>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.activity.timeline.TimeLineActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:stateListAnimator="@null"
+        android:elevation="@dimen/dp_eight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentInsetStart="0dp"
+            android:contentInsetLeft="0dp"
+            android:contentInsetEnd="0dp"
+            android:contentInsetRight="0dp"
+            app:contentInsetEnd="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:visibility='@{message.equals("")?View.VISIBLE:View.GONE}'
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="vertical">
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-20dp"
+                app:cardElevation="@dimen/dp_four"
+                app:cardCornerRadius="@dimen/dp_tweleve"
+                app:cardUseCompatPadding="true">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp_tweleve"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_eight">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.40"
+                            >
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:orientation="vertical"
+                                >
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/textViewTodaysTour"
+                                    android:text="@string/today_s_tour_for"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="@dimen/sp_sixteen"
+                                    />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="11111"
+                                    android:textColor="@color/colorDarkGray"
+                                    android:fontFamily="@font/roboto_bold"
+                                    android:textSize="@dimen/sp_twenty"
+                                    />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="0.75">
+                            <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                >
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/textViewTime"
+                                    android:text="@{dateFunctions.currentTime}"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:textColor="@color/colorBlue"
+                                    android:textSize="@dimen/sp_thirty_two"
+                                    />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/textViewTimeAMPM"
+                                    android:text="@{dateFunctions.amOrpm()}"
+                                    android:layout_toRightOf="@+id/textViewTime"
+                                    android:fontFamily="@font/roboto_bold"
+                                    android:textColor="@color/colorBlue"
+                                    />
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+
+                    <View android:layout_width="@dimen/dp_sixty"
+                        android:layout_height="5dp"
+                        android:background="@drawable/bg_light_gray_all_side_four_dp"
+                        android:layout_marginTop="@dimen/dp_sixteen"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="false"
+                android:paddingTop="@dimen/dp_tweleve"
+                android:paddingLeft="@dimen/dp_tweleve"
+                android:paddingRight="@dimen/dp_tweleve"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:id="@+id/recyclerViewDutyProgress">
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/errorMessage"
+        android:layout_centerInParent="true"
+        android:visibility='@{message.equals("")?View.GONE:View.VISIBLE}'
+        android:textColor="@color/colorRed"
+        android:textSize="@dimen/sp_eighteen"
+        android:text="@{message}"
+        android:fontFamily="@font/roboto_regular"
+        />
+
+</RelativeLayout>
+</layout>

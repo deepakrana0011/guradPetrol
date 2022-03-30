@@ -3,97 +3,91 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.patrol.guard.guardpatrol">
 
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.flash" />
+
     <uses-permission android:name="android.permission.NFC" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-
-
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
-            android:name=".view.GuardPatrolApplication"
-            android:allowBackup="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            android:supportsRtl="true"
-            tools:replace="android:allowBackup"
-            android:theme="@style/AppTheme"
-           android:requestLegacyExternalStorage="true"
-            android:usesCleartextTraffic="true">
-        <activity android:name=".view.activity.scannerActivity.ScannerActivity">
-        </activity>
-
+        android:name=".view.GuardPatrolApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup">
+        <activity
+            android:name=".view.activity.timeline.TimeLineActivity"
+            android:exported="false" />
+        <activity android:name=".view.activity.scannerActivity.ScannerActivity"></activity>
 
         <receiver
-                android:name=".utils.geoFencing.GeofenceBroadcastReceiver"
-                android:enabled="true"
-                android:exported="true" />
+            android:name=".utils.geoFencing.GeofenceBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true" />
 
         <service
-                android:name=".utils.geoFencing.GeofenceTransitionsJobIntentService"
-                android:exported="true"
-                android:permission="android.permission.BIND_JOB_SERVICE" />
-
+            android:name=".utils.geoFencing.GeofenceTransitionsJobIntentService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
             android:name=".utils.location.LocationService"
             android:exported="false"
-            android:foregroundServiceType="location"/>
-
+            android:foregroundServiceType="location" />
 
         <receiver
             android:name=".utils.location.ServiceStopBroadcastReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.patrol.guard.guardpatrol.utils.location.ServiceStopBroadcastReceiver"/>
+                <action android:name="com.patrol.guard.guardpatrol.utils.location.ServiceStopBroadcastReceiver" />
             </intent-filter>
         </receiver>
 
         <provider
-                android:name="androidx.core.content.FileProvider"
-                android:authorities="${applicationId}.provider"
-                android:exported="false"
-                android:grantUriPermissions="true">
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
-                    android:name="android.support.FILE_PROVIDER_PATHS"
-                    android:resource="@xml/provider_paths"/>
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
         </provider>
 
         <activity
-                android:name=".view.activity.StartUpActivity"
-                android:screenOrientation="portrait"
-                android:windowSoftInputMode="adjustResize"
-            android:exported="true">
+            android:name=".view.activity.StartUpActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <action android:name="android.intent.action.VIEW"/>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-                android:name=".view.activity.home.HomeActivity"
-                android:screenOrientation="portrait">
-        </activity>
+            android:name=".view.activity.home.HomeActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
-                android:name=".view.activity.incidents.IncidentsActivity"
-                android:screenOrientation="portrait">
-        </activity>
+            android:name=".view.activity.incidents.IncidentsActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
-                android:name=".view.activity.messages.MessagesActivity"
-                android:screenOrientation="portrait">
-        </activity>
-        <activity android:name=".view.activity.chooseScanOrNFC.ScanorNfcActivity">
-        </activity>
+            android:name=".view.activity.messages.MessagesActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".view.activity.chooseScanOrNFC.ScanorNfcActivity"></activity>
     </application>
 
 </manifest>
