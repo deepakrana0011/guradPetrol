@@ -54,7 +54,15 @@ class HomeActivity : BaseActivity(), NavigationAdapter.ClickListnerHandler, View
             putExtra("request", request)
         }
         Locus.setLogging(true)
-        Locus.configure {  }
+        Locus.configure {
+            request {
+                fastestInterval = 5000
+                priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+                interval = 5000
+                maxWaitTime = 2000
+               smallestDisplacement = 20F
+            }
+        }
         checkLatLong()
         setUpClickListeners()
         setUpData()
@@ -87,18 +95,12 @@ class HomeActivity : BaseActivity(), NavigationAdapter.ClickListnerHandler, View
     }
 
    public fun startUpdates() {
-       val request = LocationRequest.create()
-       request.interval= 5000L
-       request.maxWaitTime = 5000L
-       request.maxWaitTime = 5000L
 
         Locus.configure {
-            locationRequest = request
+
             enableBackgroundUpdates = true
             forceBackgroundUpdates = true
             shouldResolveRequest = true
-
-
         }
         Locus.startLocationUpdates(this) { result ->
             result.location?.let(::onLocationUpdate)
