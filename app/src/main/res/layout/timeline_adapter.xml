@@ -16,11 +16,12 @@
                 android:id="@+id/view"
                 android:background="@color/lightGray"
                 android:layout_centerHorizontal="true"/>
+
             <ImageView
+                android:id="@+id/imageViewCircleDot"
                 android:layout_width="@dimen/dp_tweleve"
                 android:layout_height="@dimen/dp_tweleve"
-                android:id="@+id/imageViewCircleDot"
-                android:src="@drawable/bg_red_circle"/>
+                android:src="@drawable/bg_red_circle" />
         </RelativeLayout>
 
         <LinearLayout
@@ -108,7 +109,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/dp_tweleve"
                     android:fontFamily="@font/roboto_regular"
                     android:text="NFC | 11:05 PM | 2 Mar 2019 | Checkpoint Sucessful"
                     android:textSize="@dimen/sp_ten" />
@@ -140,7 +140,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="@dimen/dp_tweleve"
                     android:fontFamily="@font/roboto_regular"
                     android:text="NFC | 11:05 PM | 2 Mar 2019 | Checkpoint Sucessful"
                     android:textSize="@dimen/sp_ten" />

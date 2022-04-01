@@ -23,6 +23,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/relativeLayoutBottom"
         android:orientation="vertical">
 
 
@@ -55,6 +56,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
+
+
         android:visibility='@{message.equals("")?View.VISIBLE:View.GONE}'
         android:overScrollMode="never">
 
@@ -109,7 +112,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="11111"
+                                    android:text="@{guardId}"
                                     android:textColor="@color/colorDarkGray"
                                     android:fontFamily="@font/roboto_bold"
                                     android:textSize="@dimen/sp_twenty"
@@ -185,6 +188,91 @@
         android:text="@{message}"
         android:fontFamily="@font/roboto_regular"
         />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutBottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_seventy"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_sixty"
+
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/black">
+
+
+            <ImageView
+                android:id="@+id/imageViewTorch"
+                android:layout_width="@dimen/dp_fifty"
+                android:layout_height="@dimen/dp_fifty"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_torch" />
+
+            <ImageView
+                android:id="@+id/imageViewSos"
+                android:layout_width="@dimen/dp_fifty"
+                android:layout_height="@dimen/dp_fifty"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_sos_red_border" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp_fifty"
+            android:layout_marginRight="@dimen/dp_fifty">
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutIncidents"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp_four"
+                android:layout_weight="1"
+                android:background="@drawable/bg_black_tl_tr_corner_round">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/dp_twenty"
+                    android:fontFamily="@font/roboto_bold"
+                    android:includeFontPadding="false"
+                    android:text="@string/incidents"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorBlue"
+                    android:textSize="@dimen/sp_fourteen" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutMessages"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_four"
+                android:layout_weight="1"
+                android:background="@drawable/bg_black_tl_tr_corner_round">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="@dimen/dp_twenty"
+                    android:fontFamily="@font/roboto_bold"
+                    android:includeFontPadding="false"
+                    android:text="@string/messages"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorGreen"
+                    android:textSize="@dimen/sp_fourteen" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
 </layout>

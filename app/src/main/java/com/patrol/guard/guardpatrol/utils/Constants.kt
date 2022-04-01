@@ -4,6 +4,8 @@ object Constants {
 
   //  val BASE_URL = "http://167.99.234.164:8081/gaurd/"
 
+    val Position ="position"
+    val checkPointList="checkPointList"
     val BASE_URL = "http://143.198.140.181:8081/gaurd/"
 
     //http://143.198.140.181:8081/
@@ -12,6 +14,7 @@ object Constants {
     val SUPERVISOR_ID = "SUPERVISOR_ID"
     val jwtToken = "jwtToken"
     val USER_ID = "USER_ID"
+    val SOS_NUMBER = "SOS_NUMBER"
     var REQUEST_CHECK_LOCATION_STATUS = 4
     val REQUEST_PERMISSION_SETTING = 3
     val GALLERY_INTENT = 1
@@ -22,4 +25,5 @@ object Constants {
     val GEO_DURATION = (60 * 60 * 1000).toLong()
 
     val GEO_FENCE = "GeoFence"
+
 }  

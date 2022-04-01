@@ -11,9 +11,11 @@ import android.graphics.drawable.ColorDrawable
 import android.media.Image
 import android.net.Uri
 import android.os.Build
+import android.os.CountDownTimer
 import android.os.Handler
 import android.provider.MediaStore
 import android.provider.Settings
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -31,11 +33,13 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.possibility.hr.utils.FilesFunctions
 import com.google.android.gms.location.*
+import com.mikhaellopez.circularprogressbar.CircularProgressBar
 import com.patrol.guard.guardpatrol.R
 import com.patrol.guard.guardpatrol.utils.Constants
 import com.patrol.guard.guardpatrol.utils.FragmentFunctions
 import com.patrol.guard.guardpatrol.utils.FrequentFunctions
 import com.patrol.guard.guardpatrol.view.activity.home.HomeActivity
+import com.patrol.guard.guardpatrol.viewModel.HomeViewModel
 import kotlinx.android.synthetic.main.view_alert_dialog.*
 import org.koin.android.ext.android.inject
 import java.io.File
@@ -46,6 +50,7 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     lateinit var locationCallback: LocationCallback
     lateinit var locationRequest: LocationRequest
+    val homeViewModel: HomeViewModel by inject()
 
     lateinit var mDialog: AlertDialog
 
@@ -122,6 +127,7 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
                 drawerLayout.openDrawer(GravityCompat.START)
             }
         }
+
         supportActionBar!!.setCustomView(view)
     }
 
@@ -151,6 +157,25 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
 
         var textViewSOSEvent = view.findViewById<TextView>(R.id.textViewSOSEvent)
         var buttonCancel = view.findViewById<Button>(R.id.buttonCancel)
+        var circleProgress = view.findViewById<CircularProgressBar>(R.id.circularProgress)
+        circleProgress.progressMax= 30F
+        circleProgress.progress = 30F
+
+        val timer = object: CountDownTimer(30000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                circleProgress.progress = ((millisUntilFinished/1000).toFloat())
+               // Log.e("timer=>", millisUntilFinished.toString()+"=>"+(millisUntilFinished/1000))
+            }
+
+            override fun onFinish() {
+                homeViewModel.submitSosNumber(true)
+                mDialog.dismiss()
+            }
+        }
+        timer.start()
+
+
+
 
         textViewSOSEvent.setText(
             frequentFunctions.customizeString(
@@ -162,20 +187,23 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
         )
 
         buttonCancel.setOnClickListener {
+            if (timer!=null){
+                timer.cancel()
+            }
             mDialog.dismiss()
         }
         alertDialogBuilder.setView(view)
         mDialog = alertDialogBuilder.create()
         mDialog.setCancelable(false)
-        mDialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        mDialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         mDialog.show()
         val lp = WindowManager.LayoutParams()
         val window = mDialog.getWindow()
-        window.setGravity(Gravity.CENTER)
-        lp.copyFrom(window.getAttributes())
+        window?.setGravity(Gravity.CENTER)
+        lp.copyFrom(window?.getAttributes())
         lp.width = WindowManager.LayoutParams.MATCH_PARENT
         lp.height = WindowManager.LayoutParams.MATCH_PARENT
-        window.setAttributes(lp)
+        window?.setAttributes(lp)
     }
 
 
@@ -187,15 +215,15 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
         alertDialogBuilder.setView(view)
         mDialog = alertDialogBuilder.create()
         mDialog.setCancelable(false)
-        mDialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        mDialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         mDialog.show()
         val lp = WindowManager.LayoutParams()
         val window = mDialog.getWindow()
-        window.setGravity(Gravity.CENTER)
-        lp.copyFrom(window.getAttributes())
+        window?.setGravity(Gravity.CENTER)
+        lp.copyFrom(window?.getAttributes())
         lp.width = WindowManager.LayoutParams.MATCH_PARENT
         lp.height = WindowManager.LayoutParams.MATCH_PARENT
-        window.setAttributes(lp)
+        window?.setAttributes(lp)
 
 
         Handler().postDelayed({
@@ -233,15 +261,15 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
         alertDialogBuilder.setView(view)
         mDialog = alertDialogBuilder.create()
         mDialog.setCancelable(false)
-        mDialog.getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        mDialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         mDialog.show()
         val lp = WindowManager.LayoutParams()
         val window = mDialog.getWindow()
-        window.setGravity(Gravity.CENTER)
-        lp.copyFrom(window.getAttributes())
+        window?.setGravity(Gravity.CENTER)
+        lp.copyFrom(window?.getAttributes())
         lp.width = WindowManager.LayoutParams.MATCH_PARENT
         lp.height = WindowManager.LayoutParams.MATCH_PARENT
-        window.setAttributes(lp)
+        window?.setAttributes(lp)
     }
 
 
@@ -303,5 +331,13 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
         dialogBuilder.setCancelable(false)
         mDialog = dialogBuilder.show()
         mDialog!!.getWindow()!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+    }
+
+    fun turnOnOffFlashLight(){
+        if (!frequentFunctions.isFlashLightOn) {
+            frequentFunctions.turnOnTheLight(this)
+        } else {
+            frequentFunctions.turnOfFlashLight()
+        }
     }
 }

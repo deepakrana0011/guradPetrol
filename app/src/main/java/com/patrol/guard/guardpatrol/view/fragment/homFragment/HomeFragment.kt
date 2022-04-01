@@ -33,6 +33,7 @@ import com.patrol.guard.guardpatrol.utils.geoFencing.GeofenceBroadcastReceiver
 import com.patrol.guard.guardpatrol.view.activity.BaseActivity
 import com.patrol.guard.guardpatrol.view.activity.chooseScanOrNFC.ScanorNfcActivity
 import com.patrol.guard.guardpatrol.view.activity.home.HomeActivity
+import com.patrol.guard.guardpatrol.view.activity.timeline.TimeLineActivity
 import com.patrol.guard.guardpatrol.view.fragment.BaseFragment
 import com.patrol.guard.guardpatrol.view.fragment.homFragment.adapter.HomeFragmentAdapter
 import com.patrol.guard.guardpatrol.viewModel.HomeViewModel
@@ -73,12 +74,29 @@ class HomeFragment : BaseFragment(), HomeFragmentAdapter.ItemClickListener, OnCo
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setData()
+        setTimeLineClick()
         initiateObserver()
         refreshLayout()
 
         var location= sharedPref.getLocationArray()
 
+    /*    setServiceEnable(true)
+        (activity as HomeActivity?)?.getSingleUpdate()
+        (activity as HomeActivity?)?.startUpdates()*/
+
+
      //   BasicFunctions.locationArrayList = ArrayList()
+
+    }
+
+    private fun setTimeLineClick() {
+        BaseActivity.textViewTimeLine?.setOnClickListener {
+            if (checkPoints.isNotEmpty()){
+                val intent = Intent(this.requireContext(), TimeLineActivity::class.java )
+                intent.putExtra("trip_id", binding?.tourDetail?._id)
+                startActivity(intent)
+            }
+        }
 
     }
 
@@ -197,6 +215,8 @@ class HomeFragment : BaseFragment(), HomeFragmentAdapter.ItemClickListener, OnCo
     }
 
     fun setData() {
+
+
         BaseActivity.textViewTitleName!!.setText(
             frequentFunctions.customizeString(
                 activity!!,

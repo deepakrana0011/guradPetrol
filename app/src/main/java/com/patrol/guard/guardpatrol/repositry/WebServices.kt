@@ -129,4 +129,9 @@ class WebServices(var context: Application, var sharedPref: SharedPref) {
         val call = api.sosNumber(sendSosNumber)
         return call
     }
+
+    fun getTimeline(tripId: String): Call<GuardTourResponse> {
+        val call = api.getTimeLine(tripId)
+        return call;
+    }
 }

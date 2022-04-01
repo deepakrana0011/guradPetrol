@@ -67,4 +67,7 @@ interface Api {
 
     @POST("sos")
     fun sosNumber(@Body sendSosNumber: SendSosNumber): Call<ResponseBody>
+
+    @GET("timeline/{trip_id}")
+    fun getTimeLine(@Path("trip_id") camera_id :String): Call<GuardTourResponse>
 }

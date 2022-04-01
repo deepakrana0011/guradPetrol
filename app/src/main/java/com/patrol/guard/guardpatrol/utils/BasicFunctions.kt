@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.patrol.guard.guardpatrol.R
 import com.patrol.guard.guardpatrol.model.LocationData
+import com.patrol.guard.guardpatrol.model.guardTour.CheckPoint
 
 
 class BasicFunctions {
@@ -22,6 +23,7 @@ class BasicFunctions {
 
     companion object {
          var locationArrayList =  ArrayList<LocationData>()
+        var checkPointListForTimeLine = mutableListOf<CheckPoint>()
 
         fun addLocationData(latitude: Double, longitude: Double, sharedPref: SharedPref){
             var locationData = LocationData(latitude, longitude)

@@ -1,8 +1,11 @@
 package com.patrol.guard.guardpatrol.model.guardTour
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
-class CheckPoint {
+@Parcelize
+class CheckPoint : Parcelable {
 
     @SerializedName("audio")
     var audio: String? = null
@@ -23,9 +26,9 @@ class CheckPoint {
     @SerializedName("id")
     var id: String? = null
     @SerializedName("images")
-    var images: List<Any>? = null
+    var images: List<String>? = null
     @SerializedName("incidents")
-    var incidents: List<Any>? = null
+    var incidents: List<Incidents>? = null
     @SerializedName("isgeoLoc")
     var isgeoLoc: Boolean? = null
     @SerializedName("isnfc")

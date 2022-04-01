@@ -9,6 +9,7 @@
     <string name="enter_your_id_and_pin_to_get_access">Enter your ID and PIN to get access</string>
     <string name="guard_id_number">Guard Id Number</string>
     <string name="_4_6_digits_pin">4-6 Digits PIN</string>
+
     <string name="forgot_pin">FORGOT PIN?</string>
     <string name="login">Log in</string>
     <string name="submit">Submit</string>
@@ -91,6 +92,8 @@
     <string name="select_one_icident">Please select at least one incident</string>
     <string name="starting_point">Starting Point</string>
 
+    <string name="address_text">Address</string>
+
 
     <integer-array name="introduction_screens">
         <item>@drawable/image_help1</item>
@@ -120,4 +123,21 @@
     <string name="mic_phone_permission">Without microphone permission app is unable to record the audio. So please give
         this permission.
     </string>
+    <string name="feel_free_to_email_us">Feel Free to email us</string>
+    <string name="call_us">Call Us</string>
+    <string name="copy_right_text">Copyright 2019, GUARDPATROL. Powered By: Bamboo Coding</string>
+    <string name="change_language">Change Language</string>
+    <string name="change_password">Change Password</string>
+
+    <string name="current_4_6_digits_pin">Current 4-6 Digits PIN</string>
+    <string name="new_4_6_digits_pin">New 4-6 Digits PIN</string>
+    <string name="confirm_4_6_digits_pin">Confirm 4-6 Digits PIN</string>
+    <string name="update_text">Update</string>
+    <string name="view_text">View</string>
+    <string name="timeline">Timeline</string>
+    <string name="event_detail">Event detail</string>
+    <string name="event_type">Event Type:</string>
+    <string name="when_text">When</string>
+    <string name="lat_long_text">Lat/Long</string>
+    <string name="nearest_check_point">Nearest checkpoint</string>
 </resources>

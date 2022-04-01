@@ -29,9 +29,12 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
         <activity
+            android:name=".view.activity.timelinedetail.TimeLineDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activity.timeline.TimeLineActivity"
             android:exported="false" />
-        <activity android:name=".view.activity.scannerActivity.ScannerActivity"></activity>
+        <activity android:name=".view.activity.scannerActivity.ScannerActivity" />
 
         <receiver
             android:name=".utils.geoFencing.GeofenceBroadcastReceiver"
@@ -70,6 +73,7 @@
             android:name=".view.activity.StartUpActivity"
             android:exported="true"
             android:screenOrientation="portrait"
+            android:noHistory="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -80,14 +84,14 @@
         </activity>
         <activity
             android:name=".view.activity.home.HomeActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.activity.incidents.IncidentsActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.activity.messages.MessagesActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".view.activity.chooseScanOrNFC.ScanorNfcActivity"></activity>
+            android:screenOrientation="portrait" />
+        <activity android:name=".view.activity.chooseScanOrNFC.ScanorNfcActivity" />
     </application>
 
 </manifest>

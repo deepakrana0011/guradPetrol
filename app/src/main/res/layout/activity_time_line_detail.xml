@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+        <variable name="message" type="String"/>
+        <import type="android.view.View"/>
+        <variable name="dateFunctions" type="com.patrol.guard.guardpatrol.utils.DateFunctions"/>
+
+        <!--<variable name="timelineViewModel" type="com.patrol.guard.guardpatrol.viewModel.TimelineViewModel"/>
+
+        <variable name="tourDetail" type="com.patrol.guard.guardpatrol.model.guardTour.Tour"/>
+        <variable name="message" type="String"/>
+        <variable name="guardId" type="String"/>
+
+        <variable name="dateFunctions" type="com.patrol.guard.guardpatrol.utils.DateFunctions"/>
+
+        <import type="android.view.View"/>-->
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".view.activity.timeline.TimeLineActivity">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/relativeLayoutBottom"
+            android:orientation="vertical">
+
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:stateListAnimator="@null"
+                android:elevation="@dimen/dp_eight"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:contentInsetStart="0dp"
+                    android:contentInsetLeft="0dp"
+                    android:contentInsetEnd="0dp"
+                    android:contentInsetRight="0dp"
+                    app:contentInsetEnd="0dp"
+                    app:contentInsetLeft="0dp"
+                    app:contentInsetRight="0dp"
+                    app:contentInsetStart="0dp"/>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:overScrollMode="never">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:descendantFocusability="blocksDescendants"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_sixteen"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/event_type"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/sp_sixteen"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textViewEvntType"
+                            android:text="@string/event_type"
+                            android:layout_marginStart="@dimen/dp_eight"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textColor="@color/colorBlue"
+                            android:textAllCaps="true"
+                            android:textSize="@dimen/sp_sixteen"
+                            />
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightGray"/>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_sixteen"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/when_text"
+                            android:fontFamily="@font/roboto_regular"
+                            android:textColor="@color/colorDarkGray"
+                            android:textSize="@dimen/sp_sixteen"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textViewDateTime"
+                            android:text="31 march 2022"
+                            android:layout_marginTop="@dimen/dp_sixteen"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/sp_sixteen"
+                            />
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightGray"/>
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_sixteen"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lat_long_text"
+                            android:fontFamily="@font/roboto_regular"
+                            android:textColor="@color/colorDarkGray"
+                            android:textSize="@dimen/sp_sixteen"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textViewLatLong"
+                            android:text="9.9281 N, 84.848 W"
+                            android:layout_marginTop="@dimen/dp_sixteen"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/sp_sixteen"
+                            />
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lightGray"/>
+
+
+                    <LinearLayout
+                        android:id="@+id/layoutNearestPoint"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_sixteen"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/nearest_check_point"
+                            android:layout_marginStart="@dimen/dp_sixteen"
+                            android:fontFamily="@font/roboto_regular"
+                            android:textColor="@color/colorDarkGray"
+                            android:textSize="@dimen/sp_sixteen"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textViewCheckPointName"
+                            android:text="NFC data sent "
+                            android:layout_marginStart="@dimen/dp_sixteen"
+                            android:layout_marginTop="@dimen/dp_sixteen"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/sp_sixteen"
+                            />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp_sixteen"
+                            android:background="@color/lightGray"/>
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:id="@+id/layoutIncidents"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_sixteen"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/incidents"
+                            android:layout_marginStart="@dimen/dp_sixteen"
+                            android:fontFamily="@font/roboto_regular"
+                            android:textColor="@color/colorDarkGray"
+                            android:textSize="@dimen/sp_sixteen"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textViewIncidentsMessage"
+                            android:text="Gate open, window glass broken"
+                            android:layout_marginStart="@dimen/dp_sixteen"
+                            android:layout_marginTop="@dimen/dp_sixteen"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/sp_sixteen"
+                            />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp_sixteen"
+                            android:background="@color/lightGray"/>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/layoutMessage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_sixteen"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/messages"
+                            android:layout_marginStart="@dimen/dp_sixteen"
+                            android:fontFamily="@font/roboto_regular"
+                            android:textColor="@color/colorDarkGray"
+                            android:textSize="@dimen/sp_sixteen"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textViewMessage"
+                            android:text="4 Images, 1 Audio File"
+                            android:layout_marginStart="@dimen/dp_sixteen"
+                            android:layout_marginTop="@dimen/dp_sixteen"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/sp_sixteen"
+                            />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="@dimen/dp_sixteen"
+                            android:background="@color/lightGray"/>
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/relativeLayoutBottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_seventy"
+            android:layout_alignParentBottom="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_sixty"
+
+                android:layout_alignParentBottom="true"
+                android:background="@android:color/black">
+
+
+                <ImageView
+                    android:id="@+id/imageViewTorch"
+                    android:layout_width="@dimen/dp_fifty"
+                    android:layout_height="@dimen/dp_fifty"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_torch" />
+
+                <ImageView
+                    android:id="@+id/imageViewSos"
+                    android:layout_width="@dimen/dp_fifty"
+                    android:layout_height="@dimen/dp_fifty"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_sos_red_border" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp_fifty"
+                android:layout_marginRight="@dimen/dp_fifty">
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayoutIncidents"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/dp_four"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_black_tl_tr_corner_round">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="@dimen/dp_twenty"
+                        android:fontFamily="@font/roboto_bold"
+                        android:includeFontPadding="false"
+                        android:text="@string/incidents"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="@dimen/sp_fourteen" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relativeLayoutMessages"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dp_four"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_black_tl_tr_corner_round">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="@dimen/dp_twenty"
+                        android:fontFamily="@font/roboto_bold"
+                        android:includeFontPadding="false"
+                        android:text="@string/messages"
+                        android:textAllCaps="true"
+                        android:textColor="@color/colorGreen"
+                        android:textSize="@dimen/sp_fourteen" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>
