@@ -22,15 +22,15 @@
                 android:background="@drawable/bg_black_circle">
 
             <com.mikhaellopez.circularprogressbar.CircularProgressBar
-                    android:layout_width="match_parent"
-                    android:layout_centerInParent="true"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/circularProgress"
-                    app:cpb_progress="80"
-                    app:cpb_background_progressbar_color="@color/colorGray"
-                    app:cpb_background_progressbar_width="@dimen/dp_four"
-                    app:cpb_progressbar_color="@color/colorRed"
-                    app:cpb_progressbar_width="@dimen/dp_four"/>
+                android:id="@+id/circularProgress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                app:cpb_background_progressbar_color="@color/colorGray"
+                app:cpb_background_progressbar_width="@dimen/dp_four"
+                app:cpb_progress="80"
+                app:cpb_progressbar_color="@color/colorRed"
+                app:cpb_progressbar_width="@dimen/dp_four" />
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -63,15 +63,14 @@
                 android:layout_marginTop="@dimen/sp_tweleve">
 
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="15 "
-                    android:includeFontPadding="false"
-                    android:id="@+id/textViewTime"
-                    android:fontFamily="@font/roboto_bold"
-                    android:textColor="@color/colorRed"
-                    android:textSize="@dimen/sp_thirty_two"
-            />
+                android:id="@+id/textViewTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:includeFontPadding="false"
+                android:text="30 "
+                android:textColor="@color/colorRed"
+                android:textSize="@dimen/sp_thirty_two" />
 
             <TextView
                     android:layout_width="wrap_content"

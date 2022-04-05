@@ -70,4 +70,11 @@ class DateFunctions {
         var finalTimeDate = formatedTime + " | " + formatedDate
         return finalTimeDate
     }
+
+    fun formatMonth(month: String?): String? {
+        val monthParse = SimpleDateFormat("MM")
+        val monthDisplay = SimpleDateFormat("MMMM")
+        return monthDisplay.format(monthParse.parse(month))
+    }
+
 }

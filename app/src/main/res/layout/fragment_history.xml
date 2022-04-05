@@ -1,18 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:gravity="center"
-              android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable name="message" type="String"/>
+        <variable name="guardId" type="String"/>
+        <variable name="month" type="String"/>
+        <variable name="day" type="String"/>
+        <variable name="year" type="String"/>
+        <variable name="tourDetail" type="com.patrol.guard.guardpatrol.model.guardTour.Trip"/>
+        <variable name="dateFunctions" type="com.patrol.guard.guardpatrol.utils.DateFunctions"/>
+        <import type="android.view.View"/>
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                android:visibility='visible'
+                android:overScrollMode="never">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:descendantFocusability="blocksDescendants"
+                    android:orientation="vertical">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-20dp"
+                        app:cardElevation="@dimen/dp_four"
+                        app:cardCornerRadius="@dimen/dp_tweleve"
+                        app:cardUseCompatPadding="true">
 
 
-    <TextView
-            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/dp_tweleve"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_eight">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.40"
+                                    >
+
+                                    <LinearLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:orientation="vertical"
+                                        >
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/textViewTodaysTour"
+                                            android:text="@string/today_s_tour_for"
+                                            android:fontFamily="@font/roboto_regular"
+                                            android:textColor="@android:color/black"
+                                            android:textSize="@dimen/sp_sixteen"
+                                            />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="@{guardId}"
+                                            android:textColor="@color/colorDarkGray"
+                                            android:fontFamily="@font/roboto_bold"
+                                            android:textSize="@dimen/sp_twenty"
+                                            />
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_weight="0.75">
+                                    <RelativeLayout
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="horizontal"
+                                        >
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/textViewTime"
+                                            android:text="@{dateFunctions.currentTime}"
+                                            android:fontFamily="@font/roboto_regular"
+                                            android:textColor="@color/colorBlue"
+                                            android:textSize="@dimen/sp_thirty_two"
+                                            />
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:id="@+id/textViewTimeAMPM"
+                                            android:text="@{dateFunctions.amOrpm()}"
+                                            android:layout_toRightOf="@+id/textViewTime"
+                                            android:fontFamily="@font/roboto_bold"
+                                            android:textColor="@color/colorBlue"
+                                            />
+                                    </RelativeLayout>
+                                </LinearLayout>
+                            </LinearLayout>
+                            <View android:layout_width="@dimen/dp_sixty"
+                                android:layout_height="5dp"
+                                android:background="@drawable/bg_light_gray_all_side_four_dp"
+                                android:layout_marginTop="@dimen/dp_sixteen"/>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp_tweleve"
+                        android:background="@color/lightGray"/>
+
+                    <RelativeLayout
+                        android:id="@+id/linerLayoutDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="@dimen/dp_sixteen"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textMonth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="@dimen/dp_sixteen"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="@{month}"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="@dimen/sp_sixteen" />
+
+                        <TextView
+                            android:id="@+id/textMonthNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:drawableEnd="@drawable/dropdown"
+                            android:gravity="center"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="@{day}"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="@dimen/sp_sixteen" />
+
+                        <TextView
+                            android:id="@+id/textYear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="@{year}"
+                            android:layout_marginEnd="@dimen/dp_sixteen"
+
+                            android:gravity="center"
+                            android:drawableEnd="@drawable/dropdown"
+                            android:layout_alignParentEnd="true"
+                            android:textColor="@color/colorBlue"
+                            android:textSize="@dimen/sp_sixteen" />
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/dp_tweleve"
+                        android:background="@color/lightGray"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingTop="@dimen/dp_tweleve"
+                        android:paddingLeft="@dimen/dp_tweleve"
+                        android:paddingRight="@dimen/dp_tweleve"
+                        android:visibility='@{message.equals("")?View.VISIBLE:View.GONE}'
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:id="@+id/recyclerViewDutyProgress">
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </LinearLayout>
+        <TextView android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Coming Soon"
-            android:fontFamily="@font/roboto_regular"
+            android:id="@+id/errorMessage"
+            android:layout_centerInParent="true"
+            android:visibility='@{message.equals("")?View.GONE:View.VISIBLE}'
+            android:textColor="@color/colorRed"
             android:textSize="@dimen/sp_eighteen"
-            android:layout_gravity="center"
-    />
-
-</LinearLayout>
+            android:text="@{message}"
+            android:fontFamily="@font/roboto_regular"
+            />
+    </RelativeLayout>
+</layout>

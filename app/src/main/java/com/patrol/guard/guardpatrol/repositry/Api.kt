@@ -7,6 +7,8 @@ import com.patrol.guard.guardpatrol.model.endTrip.EndTripResponse
 import com.patrol.guard.guardpatrol.model.getIncidentsList.GetIncidentsList
 import com.patrol.guard.guardpatrol.model.guardTour.GuardDetailToServer
 import com.patrol.guard.guardpatrol.model.guardTour.GuardTourResponse
+import com.patrol.guard.guardpatrol.model.history.SendHistoryToServer
+import com.patrol.guard.guardpatrol.model.history.TripHistoryResponse
 import com.patrol.guard.guardpatrol.model.login.LoginDetailToServer
 import com.patrol.guard.guardpatrol.model.login.LoginResponse
 import com.patrol.guard.guardpatrol.model.scanCheckPoint.ScanCheckPointDetailToServer
@@ -70,4 +72,7 @@ interface Api {
 
     @GET("timeline/{trip_id}")
     fun getTimeLine(@Path("trip_id") camera_id :String): Call<GuardTourResponse>
+
+    @POST("trip/history")
+    fun fetchTourHistory(@Body history: SendHistoryToServer): Call<TripHistoryResponse>
 }

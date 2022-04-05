@@ -8,6 +8,8 @@ import com.patrol.guard.guardpatrol.model.endTrip.EndTripResponse
 import com.patrol.guard.guardpatrol.model.getIncidentsList.GetIncidentsList
 import com.patrol.guard.guardpatrol.model.guardTour.GuardDetailToServer
 import com.patrol.guard.guardpatrol.model.guardTour.GuardTourResponse
+import com.patrol.guard.guardpatrol.model.history.SendHistoryToServer
+import com.patrol.guard.guardpatrol.model.history.TripHistoryResponse
 import com.patrol.guard.guardpatrol.model.login.LoginDetailToServer
 import com.patrol.guard.guardpatrol.model.login.LoginResponse
 import com.patrol.guard.guardpatrol.model.scanCheckPoint.ScanCheckPointDetailToServer
@@ -134,4 +136,10 @@ class WebServices(var context: Application, var sharedPref: SharedPref) {
         val call = api.getTimeLine(tripId)
         return call;
     }
+
+    fun fetchTourHistory(historyBody: SendHistoryToServer): Call<TripHistoryResponse> {
+        val call = api.fetchTourHistory(historyBody)
+        return call
+    }
+
 }

@@ -1,14 +1,9 @@
 package com.patrol.guard.guardpatrol.viewModel
 
-import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.Navigation
-import com.patrol.guard.guardpatrol.R
 import com.patrol.guard.guardpatrol.model.guardTour.GuardDetailToServer
 import com.patrol.guard.guardpatrol.model.guardTour.GuardTourResponse
-import com.patrol.guard.guardpatrol.model.guardTour.Tour
-import com.patrol.guard.guardpatrol.model.login.LoginResponse
 import com.patrol.guard.guardpatrol.model.startTrip.StartTripDetailToServer
 import com.patrol.guard.guardpatrol.model.startTrip.StartTripResponse
 import com.patrol.guard.guardpatrol.repositry.WebServices
@@ -19,12 +14,16 @@ import com.patrol.guard.guardpatrol.view.activity.BaseActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import androidx.databinding.ObservableBoolean
+import com.patrol.guard.guardpatrol.model.about.AboutResponse
+import com.patrol.guard.guardpatrol.model.about.SendSosNumber
 import com.patrol.guard.guardpatrol.model.endTrip.EndDetailToServer
 import com.patrol.guard.guardpatrol.model.endTrip.EndTripResponse
+import com.patrol.guard.guardpatrol.model.history.SendHistoryToServer
+import com.patrol.guard.guardpatrol.model.history.TripHistoryResponse
 import com.patrol.guard.guardpatrol.model.scanCheckPoint.ScanCheckPointDetailToServer
 import com.patrol.guard.guardpatrol.model.scanCheckPoint.ScanCheckPointResponse
-import kotlinx.android.synthetic.main.activity_scan_or_nfc.*
+import com.patrol.guard.guardpatrol.utils.BasicFunctions
+import okhttp3.ResponseBody
 
 
 class HomeViewModel(webServices: WebServices, frequentFunctions: FrequentFunctions, sharedPref: SharedPref) :
@@ -39,8 +38,10 @@ class HomeViewModel(webServices: WebServices, frequentFunctions: FrequentFunctio
     var feedBackMessage: MutableLiveData<String> = MutableLiveData()
     var onSuccessfullyGetTourResponse: MutableLiveData<GuardTourResponse> = MutableLiveData()
     var onSuccessfullyStartTrip: MutableLiveData<StartTripResponse> = MutableLiveData()
+    var onSuccessfullyAbout: MutableLiveData<AboutResponse> = MutableLiveData()
     var onSuccessfullyEndTrip: MutableLiveData<EndTripResponse> = MutableLiveData()
     var onSuccessfullyScanGeoFence: MutableLiveData<ScanCheckPointResponse> = MutableLiveData()
+    var onSuccessfullyHistory: MutableLiveData<TripHistoryResponse> = MutableLiveData()
 
     init {
         this.webServices = webServices
@@ -161,4 +162,89 @@ class HomeViewModel(webServices: WebServices, frequentFunctions: FrequentFunctio
             }
         })
     }
+
+    //  call about Api to fetch the Sos number
+    fun fetchSosNumber() {
+        webServices.fetchSosNumber().enqueue(object : Callback<AboutResponse> {
+            override fun onResponse(call: Call<AboutResponse>, response: Response<AboutResponse>) {
+                if (response.code() == 200) {
+                    response?.body()?.about?.let {
+                        sharedPref.setString(Constants.SOS_NUMBER,it.sosNumber)
+                    }
+
+                    //onSuccessfullyAbout.value = response.body()
+                } else {
+                   // feedBackMessage.value = frequentFunctions.errorMessage(response.errorBody()!!.string())
+                }
+            }
+            override fun onFailure(call: Call<AboutResponse>, t: Throwable) {
+              //  progressBar.value = false
+               // feedBackMessage.value = t!!.message
+            }
+        })
+    }
+
+
+    fun submitSosNumber(progressBarVisibilty: Boolean) {
+        if (progressBarVisibilty) {
+            if (shouldShowProgressBar) {
+                progressBar.value = true
+            }
+
+        }
+        val sendSosNumber = SendSosNumber()
+        val sosNumber = sharedPref.getString(Constants.SOS_NUMBER)
+        sendSosNumber.sosNumber= sosNumber
+        webServices.submitSosNumber(sendSosNumber).enqueue(object : Callback<ResponseBody> {
+            override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                if (response.code() == 200) {
+                    if (progressBarVisibilty) {
+                        progressBar.value = false
+                    }
+                //onSuccessfullyAbout.value = response.body()
+                }
+                else{
+                    progressBar.value = false
+                }
+            }
+            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                  progressBar.value = false
+                // feedBackMessage.value = t!!.message
+            }
+        })
+    }
+
+
+    //  call about Api to fetch the Sos number
+    fun fetchTourHistory(timeStamp: String, progressBarVisibilty: Boolean) {
+        val historyBody = SendHistoryToServer()
+        var guardId = sharedPref.getString(Constants.USER_ID)
+        historyBody.date= timeStamp
+        historyBody.gaurdId= guardId
+        historyBody.skip="0"
+        if (progressBarVisibilty) {
+            if (shouldShowProgressBar) {
+                progressBar.value = true
+            }
+
+        }
+        webServices.fetchTourHistory(historyBody).enqueue(object : Callback<TripHistoryResponse> {
+            override fun onResponse(call: Call<TripHistoryResponse>, response: Response<TripHistoryResponse>) {
+                if (response.code() == 200) {
+                    if (progressBarVisibilty) {
+                        progressBar.value = false
+                    }
+                    onSuccessfullyHistory.value = response.body()
+                } else {
+                    progressBar.value = false
+                   feedBackMessage.value = frequentFunctions.errorMessage(response.errorBody()!!.string())
+                }
+            }
+            override fun onFailure(call: Call<TripHistoryResponse>, t: Throwable) {
+                progressBar.value = false
+                feedBackMessage.value = t!!.message
+            }
+        })
+    }
+
 }
