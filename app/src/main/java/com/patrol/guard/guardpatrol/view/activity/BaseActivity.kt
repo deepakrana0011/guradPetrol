@@ -158,12 +158,14 @@ open class BaseActivity : AppCompatActivity(), View.OnClickListener {
         var textViewSOSEvent = view.findViewById<TextView>(R.id.textViewSOSEvent)
         var buttonCancel = view.findViewById<Button>(R.id.buttonCancel)
         var circleProgress = view.findViewById<CircularProgressBar>(R.id.circularProgress)
+        var textViewTime= view.findViewById<TextView>(R.id.textViewTime)
         circleProgress.progressMax= 30F
         circleProgress.progress = 30F
 
         val timer = object: CountDownTimer(30000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 circleProgress.progress = ((millisUntilFinished/1000).toFloat())
+                textViewTime.text=  circleProgress.progress.toString()
                // Log.e("timer=>", millisUntilFinished.toString()+"=>"+(millisUntilFinished/1000))
             }
 

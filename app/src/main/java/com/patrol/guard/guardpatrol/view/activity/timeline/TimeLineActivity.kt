@@ -97,9 +97,6 @@ class TimeLineActivity : BaseActivity(), TimeLineViewAdapter.ItemClickListener {
     fun initiateObserver() {
         timelineViewModel.feedBackMessage.observe(this, object : Observer<String> {
             override fun onChanged(message: String?) {
-                if (refreshLayoutView.isRefreshing) {
-                    refreshLayoutView.isRefreshing = false
-                }
                 binding.message = message
                 //basicFunctions.showFeedbackMessage(activity!!, binding!!.root, message!!)
             }
