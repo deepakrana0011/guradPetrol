@@ -16,6 +16,8 @@ import com.patrol.guard.guardpatrol.model.scanCheckPoint.ScanCheckPointDetailToS
 import com.patrol.guard.guardpatrol.model.scanCheckPoint.ScanCheckPointResponse
 import com.patrol.guard.guardpatrol.model.sendIncidentResponse.SendIncidentResponse
 import com.patrol.guard.guardpatrol.model.sendIncidentResponse.sendIncidentDetail.SendIncidentDetailToServer
+import com.patrol.guard.guardpatrol.model.setting.SettingDetailToServer
+import com.patrol.guard.guardpatrol.model.setting.UpdatePinResponse
 import com.patrol.guard.guardpatrol.model.startTrip.StartTripDetailToServer
 import com.patrol.guard.guardpatrol.model.startTrip.StartTripResponse
 import com.patrol.guard.guardpatrol.model.uploadAudio.UploadAudioResponse
@@ -140,6 +142,11 @@ class WebServices(var context: Application, var sharedPref: SharedPref) {
     fun fetchTourHistory(historyBody: SendHistoryToServer): Call<TripHistoryResponse> {
         val call = api.fetchTourHistory(historyBody)
         return call
+    }
+
+    fun updatePin(settingDetailToServer: SettingDetailToServer): Call<UpdatePinResponse> {
+        val call = api.changePin(settingDetailToServer)
+        return call;
     }
 
 }

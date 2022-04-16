@@ -25,6 +25,7 @@ object AppModule {
         viewModel { ScanViewModel(get(),get()) }
         viewModel{LoginViewModel(application, get(),get(),get())}
         viewModel{MessageActivityViewModel(get(),get(),get())}
-        viewModel{TimelineViewModel(get(),get(),get())}
+        viewModel{TimelineViewModel(get(),get(),get()) }
+        viewModel{SettingViewModel(application, get(),get(),get())}
     }
 }

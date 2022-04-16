@@ -15,6 +15,8 @@ import com.patrol.guard.guardpatrol.model.scanCheckPoint.ScanCheckPointDetailToS
 import com.patrol.guard.guardpatrol.model.scanCheckPoint.ScanCheckPointResponse
 import com.patrol.guard.guardpatrol.model.sendIncidentResponse.SendIncidentResponse
 import com.patrol.guard.guardpatrol.model.sendIncidentResponse.sendIncidentDetail.SendIncidentDetailToServer
+import com.patrol.guard.guardpatrol.model.setting.SettingDetailToServer
+import com.patrol.guard.guardpatrol.model.setting.UpdatePinResponse
 import com.patrol.guard.guardpatrol.model.startTrip.StartTripDetailToServer
 import com.patrol.guard.guardpatrol.model.startTrip.StartTripResponse
 import com.patrol.guard.guardpatrol.model.uploadAudio.UploadAudioResponse
@@ -75,4 +77,8 @@ interface Api {
 
     @POST("trip/history")
     fun fetchTourHistory(@Body history: SendHistoryToServer): Call<TripHistoryResponse>
+
+    @PUT("pin")
+    fun changePin(@Body settingDetailToServer: SettingDetailToServer): Call<UpdatePinResponse>
+
 }

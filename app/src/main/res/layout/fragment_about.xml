@@ -1,21 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="homeViewModel"
+            type="com.patrol.guard.guardpatrol.viewModel.HomeViewModel"/>
 
-<layout
-        xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <variable name="aboutResponse" type="com.patrol.guard.guardpatrol.model.about.AboutResponse"/>
+        <variable name="address" type="String"/>
+        <variable name="email" type="String"/>
+        <variable name="phone" type="String"/>
+        <variable name="guardId" type="String"/>
+
+        <variable name="dateFunctions" type="com.patrol.guard.guardpatrol.utils.DateFunctions"/>
+
+        <import type="android.view.View"/>
+
+    </data>
     <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Coming Soon"
-                android:fontFamily="@font/roboto_regular"
-                android:textSize="@dimen/sp_eighteen"
-                android:layout_gravity="center"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                android:layout_weight="2"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.8"
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/dp_sixteen"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="@dimen/dp_twenty_eight"
+                    android:background="@color/colorPrimary">
+                    <ImageView
+                        android:layout_width="200dp"
+                           android:layout_height="200dp"
+                        android:layout_marginTop="@dimen/dp_four"
+                        android:src="@drawable/ic_login_logo"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewAGuide"
+                        android:text="@string/a_utility_tool_for_the_guards_while_patrolling"
+                        android:textAllCaps="false"
+                        android:layout_marginTop="@dimen/dp_sixteen"
+                        android:fontFamily="@font/roboto_regular"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/colorBlue"
+                        android:textSize="@dimen/sp_fourteen"/>
+
+                </LinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:paddingTop="@dimen/dp_sixteen"
+                    android:paddingStart="@dimen/dp_sixteen"
+                    android:orientation="vertical"
+                    android:layout_weight="1.2"
+                    android:paddingBottom="@dimen/dp_tweleve">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_sixteen"
+                            android:layout_marginTop="@dimen/dp_eight"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="@string/address_text"
+                            android:textAllCaps="true"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/sp_fourteen" />
+
+
+                        <TextView
+                            android:layout_width="44dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="@dimen/dp_twenty"
+                            android:layout_marginTop="@dimen/dp_tweleve"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="@{address}"
+                            android:textAllCaps="true"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/sp_ten" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_sixteen"
+                            android:layout_marginTop="@dimen/dp_tweleve"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="@string/feel_free_to_email_us"
+                            android:textAllCaps="true"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/sp_fourteen" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_twenty"
+                            android:layout_marginTop="@dimen/dp_tweleve"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="@{email}"
+                            android:textAllCaps="true"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/sp_ten" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_sixteen"
+                            android:layout_marginTop="@dimen/dp_tweleve"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="@string/call_us"
+                            android:textAllCaps="true"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/sp_fourteen" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp_twenty"
+                            android:layout_marginTop="@dimen/dp_tweleve"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="@{phone}"
+                            android:textAllCaps="true"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/sp_ten" />
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/copyRightText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:text="@string/copy_right_text"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/sp_eight" />
+                </RelativeLayout>
+            </LinearLayout>
     </LinearLayout>
+
 </layout>
-
-

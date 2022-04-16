@@ -1,14 +1,12 @@
 package com.patrol.guard.guardpatrol.utils
 
 import android.app.Activity
-import android.app.Application
+import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.WindowManager
+import android.view.*
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
@@ -16,10 +14,12 @@ import com.google.android.material.snackbar.Snackbar
 import com.patrol.guard.guardpatrol.R
 import com.patrol.guard.guardpatrol.model.LocationData
 import com.patrol.guard.guardpatrol.model.guardTour.CheckPoint
+import java.util.*
 
 
 class BasicFunctions {
     lateinit var mDialogProgress: AlertDialog
+    var languageCode :String ="en"
 
     companion object {
          var locationArrayList =  ArrayList<LocationData>()
@@ -35,6 +35,28 @@ class BasicFunctions {
             Log.e("Location11", "=>"+ locationArrayList.size+"");
 
 
+        }
+
+
+
+    }
+
+
+    fun setLocale(c: Context, languageCode: String, countryCode:String) {
+        try {
+            var locale :Locale?=null
+            if (!countryCode.isNullOrEmpty()){
+                locale = Locale(languageCode, countryCode)
+            }
+            else{
+                locale = Locale(languageCode)
+            }
+            Locale.setDefault(locale)
+            val config = Configuration()
+            config.locale = locale
+            c.resources.updateConfiguration(config, c.resources.displayMetrics)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 

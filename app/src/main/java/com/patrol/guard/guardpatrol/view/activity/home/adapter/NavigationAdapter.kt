@@ -33,7 +33,7 @@ class NavigationAdapter(activity: Activity, frequentFunctions: FrequentFunctions
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if (position == 2) {
+        if (position == 1) {
             holder.textViewItemName.setText(frequentFunctions.customizeString(activity, items.get(position), 16, 17))
         } else {
             holder.textViewItemName.setText(items.get(position))

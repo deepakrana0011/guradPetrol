@@ -1,0 +1,137 @@
+<resources>
+    <string name="app_name">Guard Patrol</string>
+    <string name="a_guide_to_the_guards">Una guía para guardas</string>
+    <string name="skip">Saltar</string>
+    <string name="guard_patrol">GUARD PATROL</string>
+    <string name="a_utility_tool_for_the_guards_while_patrolling">Una herramienta de utilidad para guardas de seguridad mientras patrullan
+    </string>
+    <string name="login_access_to">INICIAR SESIÓN ACCEDER A</string>
+    <string name="enter_your_id_and_pin_to_get_access">Ingrese su ID y PIN para obtener acceso</string>
+    <string name="guard_id_number">Número de identificación de guarda</string>
+    <string name="_4_6_digits_pin">PIN de 4-6 dígitos</string>
+
+    <string name="forgot_pin">¿Olvidó el pin?</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="submit">Enviar</string>
+    <string name="enter_registered_email">Ingrese el correo electrónico registrado</string>
+    <string name="forgot_pin_caps">PIN OLVIDADO</string>
+
+    <string name="today_schedule">Horario de hoy</string>
+    <string name="history">Historia</string>
+    <string name="about_guard_patrol">Acerca de GUARD PATROL</string>
+    <string name="settings">Ajustes</string>
+    <string name="help">Ayuda</string>
+    <string name="messages">Mensajes</string>
+    <string name="zone">ZONA</string>
+    <string name="duty_hours">HORAS DE TRABAJO</string>
+    <string name="about">Acerca de</string>
+    <string name="send_incidents">Enviar incidentes</string>
+    <string name="sent_incident">Incidente enviado</string>
+    <string name="sent_message">Mensaje enviado</string>
+    <string name="incidents">Incidentes</string>
+    <string name="incidentsCaps">INCIDENCIAS</string>
+    <string name="send_messages">Enviar mensajes</string>
+    <string name="messagesCaps">Messages</string>
+    <string name="select_incidents">Seleccionar incidentes</string>
+    <string name="assign_nearest_checkpoint">Asignar punto de control más cercano</string>
+    <string name="audio">Audio</string>
+    <string name="image">Imagen</string>
+    <string name="text_message">Mensaje de texto</string>
+    <string name="sos_event_will_be_sent_in">El evento SOS se enviará en</string>
+    <string name="cancel">Cancelar</string>
+    <string name="sos">SOS</string>
+    <string name="tap_the_button_and_target_the_device_to_the_qr_code">Toque el botón y dirija su dispositivo al código QR</string>
+    <string name="tap_the_button_and_hold_the_tag_against_the_back_of_your_device_to_read_it">Toque el botón y sostenga la etiqueta contra la parte posterior de su dispositivo para leerlo</string>
+    <string name="scan_nfc_tag">Escanear etiqueta NFC</string>
+    <string name="scan_qr_code">Escanear código QR</string>
+    <string name="scan">Escanear</string>
+    <string name="emtpty_guard_id">Por favor ingrese la ID de Guarda</string>
+    <string name="empty_guard_pin">Por favor ingrese el Pin de Guarda</string>
+    <string name="loading">Cargando</string>
+    <string name="permission">Permiso</string>
+    <string name="ok">Ok</string>
+    <string name="choose_from">Escoge de</string>
+    <string name="phone_s_gallery">Galería del teléfono</string>
+    <string name="cancel1">Cancelar</string>
+    <string name="take_a_pic">Toma una foto</string>
+    <string name="select_image_for_incident">Seleccione una imagen para todos los incidentes seleccionados.</string>
+    <string name="nfc">NFC</string>
+    <string name="geo_fencing">Cercado Geográfico</string>
+    <string name="qr_code">Código QR</string>
+    <string name="locationPermission">Sin permiso de ubicación, la aplicación no puede encontrar su ubicación actual. Permita este permiso.</string>
+    <string name="storagePermission">Sin permiso de almacenamiento, la aplicación no puede obtener las imágenes del teléfono. Permita este permiso.</string>
+    <string name="cameraPermission2">Sin el permiso de la cámara, la aplicación no puede capturar una imagen. Permita este permiso.</string>
+    <string name="cameraPermission">Sin el permiso de la cámara, la aplicación no puede escanear el código QR. Permita este permiso.</string>
+    <string name="mic_phone_permission">Sin el permiso del micrófono, la aplicación no puede grabar el audio. Permita este permiso.</string>
+    <string name="upcoming">PRÓXIMO</string>
+    <string name="today_s_tour_for">Tour de hoy por</string>
+    <string name="check_point_successful">Punto de control exitoso</string>
+    <string name="camera_permission">Para acceder a la antorcha, la aplicación requiere permiso de la cámara.</string>
+
+    <string name="unknown_geofence_error">Error desconocido de la geofence</string>
+    <string name="geofence_not_available">Geofence no disponible</string>
+    <string name="geofence_too_many_geofences">Se encontraron demasiadas geofence</string>
+    <string name="geofence_too_many_pending_intents">Demasiadas geofences pendientes de intención</string>
+    <string name="geofence_transition_invalid_type">Geofence Inválida</string>
+    <string name="ready_to_scan_nfc_tag">LISTA PARA ESCANEAR LA ETIQUETA NFC</string>
+    <string name="hold_your_device_nfc">Sostenga su dispositivo cerca de la etiqueta NFC</string>
+    <string name="alert">ALERTA</string>
+    <string name="please_turn_on_nfc_setting_to_scan_nfc_tag">Active la configuración de NFC para escanear el NFC.</string>
+    <string name="done">Hecho</string>
+    <string name="detected">DETECTADO</string>
+    <string name="checkpoint_scanned">Punto de control escaneado con éxito.</string>
+    <string name="select_one_icident">Seleccione al menos un incidente</string>
+    <string name="starting_point">Punto de partida</string>
+
+    <string name="address_text">Dirección</string>
+
+
+    <integer-array name="introducción_screens">
+        <item>@drawable/image_help1</item>
+        <item>@drawable/image_help2</item>
+        <item>@drawable/image_help3</item>
+        <item>@drawable/image_help4</item>
+        <item>@drawable/image_help5</item>
+        <item>@drawable/image_help6</item>
+    </integer-array>
+
+
+    <string-array name="elemento_navegación">
+        <item>@string/today_schedule</item>
+        <item>@string/history</item>
+        <item>@string/about_guard_patrol</item>
+        <item>@string/settings</item>
+        <item>@string/help</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hola fragmento en blanco</string>
+    <string name="message_must_contain_audio_image_video">Tu mensaje debe contener al menos un audio, una imagen o texto.</string>
+    <string name="do_you_want_to_assign_to_nearest_check_point">"¿Quieres asignar este incidente a tu punto de control más cercano?"</string>
+    <string name="yes">Si</string>
+    <string name="no">No</string>
+    <string name="feel_free_to_email_us">No dude en enviarnos un correo electrónico</string>
+    <string name="call_us">Llámenos</string>
+    <string name="copy_right_text">Copyright 2022, GUARDPATROL. Desarrollado por: Bamboo bambooo.cr</string>
+    <string name="change_language">Cambiar idioma</string>
+    <string name="change_password">Cambia la contraseña</string>
+
+    <string name="current_4_6_digits_pin">PIN actual de 4-6 dígitos</string>
+    <string name="new_4_6_digits_pin">Nuevo PIN de 4-6 dígitos</string>
+    <string name="confirm_4_6_digits_pin">Confirmar PIN de 4-6 dígitos</string>
+    <string name="update_text">Actualizar</string>
+    <string name="view_text">Vista</string>
+    <string name="timeline">Cronología</string>
+    <string name="event_detail">Detalle del evento</string>
+    <string name="event_type">Tipo de evento:</string>
+    <string name="when_text">Cuándo</string>
+    <string name="lat_long_text">Lat/Long</string>
+    <string name="nearest_check_point">Punto de control más cercano</string>
+    <string name="wrong_qr_code">Escaneó un código QR incorrecto</string>
+    <string name="new_pin_not_match">El pin nuevo no coincide.</string>
+    <string name="no_tour_error">No hay tour disponible para ti</string>
+    <string name="message_box_hint">Escriba su mensaje dentro de 5000 caracteres</string>
+    <string name="logout_text">CERRAR SESIÓN</string>
+    <string name="version_text">Versión 1.0</string>
+
+</resources>

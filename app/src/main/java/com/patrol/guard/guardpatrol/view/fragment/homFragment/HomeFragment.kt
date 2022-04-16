@@ -63,7 +63,7 @@ class HomeFragment : BaseFragment(), HomeFragmentAdapter.ItemClickListener, OnCo
         binding!!.guardId = sharedPref.getString(Constants.GUARD_ID)
         homeViewModel.getGuardTour(BaseActivity.latitude, BaseActivity.longtiude, true)
 
-        mGeofencingClient = LocationServices.getGeofencingClient(activity!!)
+        mGeofencingClient = LocationServices.getGeofencingClient(requireActivity())
        // registerBroadCa
         // stReciever()
 
@@ -139,6 +139,7 @@ class HomeFragment : BaseFragment(), HomeFragmentAdapter.ItemClickListener, OnCo
                 binding!!.message = ""
                 binding!!.tourDetail = response!!.tour
                 checkPoints = response!!.tour!!.checkPoints!!
+
 
 
                 var currentCheckPointPosition=response.tour!!.checkPointPosition!!
@@ -219,13 +220,13 @@ class HomeFragment : BaseFragment(), HomeFragmentAdapter.ItemClickListener, OnCo
 
         BaseActivity.textViewTitleName!!.setText(
             frequentFunctions.customizeString(
-                activity!!,
+                requireActivity(),
                 getString(R.string.guard_patrol),
                 10,
                 11
             )
         )
-        binding!!.textViewZone.setText(frequentFunctions.customizeString(activity!!, getString(R.string.zone), 1, 2))
+        binding!!.textViewZone.setText(frequentFunctions.customizeString(requireActivity(), getString(R.string.zone), 1, 2))
         binding!!.textViewDutyHours.setText(
             frequentFunctions.customizeString(
                 activity!!,
@@ -293,7 +294,7 @@ class HomeFragment : BaseFragment(), HomeFragmentAdapter.ItemClickListener, OnCo
         if (task.isSuccessful()) {
             //basicFunctions.showFeedbackMessage(activity!!, binding!!.root, "geo fence add successfully"!!)
         } else {
-            basicFunctions.showFeedbackMessage(activity!!, binding!!.root, task!!.exception!!.message!!)
+            basicFunctions.showFeedbackMessage(requireActivity(), binding!!.root, task!!.exception!!.message!!)
         }
     }
 

@@ -1,18 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="settingViewModel"
+            type="com.patrol.guard.guardpatrol.viewModel.SettingViewModel" />
+    </data>
     <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:padding="@dimen/dp_sixteen">
 
-        <TextView
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_twenty">
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Coming Soon"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="@dimen/dp_sixteen"
+                android:layout_marginTop="@dimen/dp_eight"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/change_language"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_fourteen" />
+
+
+            <Spinner
+                android:id="@+id/spinnerLaguage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:popupBackground="@android:color/white"
+                android:scrollbars="none"
+                app:backgroundTint="@color/colorBlue"
+                android:spinnerMode="dropdown" />
+
+
+
+
+
+        </RelativeLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dp_twenty">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_sixteen"
+                android:layout_marginTop="@dimen/dp_eight"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/change_password"
+                android:layout_alignParentStart="true"
+                android:textAllCaps="true"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_fourteen" />
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editCurrentPin"
+                android:layout_marginTop="@dimen/dp_fourty"
+                android:text="@={settingViewModel.guardPinOld}"
+                android:background="@drawable/bottom_line_light_gray_drawable"
+                android:layout_marginLeft="@dimen/dp_sixty"
+                android:maxLength="6"
+                android:hint="@string/current_4_6_digits_pin"
+                android:gravity="center"
+                android:inputType="phone"
+                android:textColor="@android:color/black"
+                android:paddingBottom="@dimen/dp_eight"
+                android:textSize="@dimen/sp_fourteen"
                 android:fontFamily="@font/roboto_regular"
-                android:textSize="@dimen/sp_eighteen"
-                android:layout_gravity="center"/>
+                android:layout_marginRight="@dimen/dp_sixty"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editNewPin"
+                android:layout_marginTop="@dimen/dp_twenty_four"
+                android:background="@drawable/bottom_line_light_gray_drawable"
+                android:layout_marginLeft="@dimen/dp_sixty"
+                android:text="@={settingViewModel.guardPin}"
+                android:hint="@string/new_4_6_digits_pin"
+                android:gravity="center"
+                android:maxLength="6"
+                android:textColor="@android:color/black"
+                android:paddingBottom="@dimen/dp_eight"
+                android:inputType="phone"
+                android:textSize="@dimen/sp_fourteen"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginRight="@dimen/dp_sixty"
+                />
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editConfirmPin"
+                android:layout_marginTop="@dimen/dp_twenty_four"
+                android:background="@drawable/bottom_line_light_gray_drawable"
+                android:layout_marginLeft="@dimen/dp_sixty"
+                android:hint="@string/confirm_4_6_digits_pin"
+                android:gravity="center"
+                android:maxLength="6"
+                android:text="@={settingViewModel.guardPinComfirm}"
+                android:textColor="@android:color/black"
+                android:paddingBottom="@dimen/dp_eight"
+                android:inputType="phone"
+                android:textSize="@dimen/sp_fourteen"
+                android:fontFamily="@font/roboto_regular"
+                android:layout_marginRight="@dimen/dp_sixty"
+                />
+
+
+            <Button
+                android:layout_width="@dimen/dp_two_hundered"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonLogin"
+                android:text="@string/update_text"
+                android:layout_marginBottom="@dimen/dp_four"
+                android:padding="@dimen/dp_eight"
+                android:onClick="@{settingViewModel::onChangePinClick}"
+                android:fontFamily="@font/roboto_bold"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_twenty_four"
+                android:background="@drawable/selector_bg_black_eight_dp_round"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_sixteen"
+                android:textAllCaps="true"
+                />
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 

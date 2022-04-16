@@ -13,6 +13,9 @@ object Constants {
     val GUARD_ID = "GUARD_ID"
     val SUPERVISOR_ID = "SUPERVISOR_ID"
     val jwtToken = "jwtToken"
+    val LANGUAGE_CODE = "language_code"
+    val COUNTRY_CODE = "language_code"
+    val LANGUAGE_NAME="language_name"
     val USER_ID = "USER_ID"
     val SOS_NUMBER = "SOS_NUMBER"
     var REQUEST_CHECK_LOCATION_STATUS = 4

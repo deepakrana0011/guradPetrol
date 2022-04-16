@@ -21,12 +21,22 @@ class AuthorizationInterceptor(var context: Context, var sharedPreferences: Shar
         //val authorization = null
 
       val  authorization = sharedPreferences.getString(Constants.jwtToken)
-
-
+      var languageCode = sharedPreferences.getString(Constants.LANGUAGE_CODE)
+      if (languageCode.isNullOrEmpty()){
+          languageCode = "en"
+      }
         if (authorization != null|| authorization!="") {
             request = request.newBuilder()
-                .addHeader("authorization", authorization).build()
+                .addHeader("authorization", authorization)
+                .addHeader("Accept-Language",languageCode.lowercase()).build()
         }
+        else{
+            request = request.newBuilder()
+                .addHeader("Accept-Language",languageCode.lowercase()).build()
+
+        }
+
+
         return chain.proceed(request)
     }
 }

@@ -174,12 +174,41 @@ class HomeViewModel(webServices: WebServices, frequentFunctions: FrequentFunctio
 
                     //onSuccessfullyAbout.value = response.body()
                 } else {
-                   // feedBackMessage.value = frequentFunctions.errorMessage(response.errorBody()!!.string())
+                    feedBackMessage.value = frequentFunctions.errorMessage(response.errorBody()!!.string())
                 }
             }
             override fun onFailure(call: Call<AboutResponse>, t: Throwable) {
               //  progressBar.value = false
                // feedBackMessage.value = t!!.message
+            }
+        })
+    }
+
+
+    fun fetchAboutInfo(progressBarVisibilty: Boolean) {
+
+        if (progressBarVisibilty) {
+            if (shouldShowProgressBar) {
+                progressBar.value = true
+            }
+
+        }
+        webServices.fetchSosNumber().enqueue(object : Callback<AboutResponse> {
+            override fun onResponse(call: Call<AboutResponse>, response: Response<AboutResponse>) {
+                if (response.code() == 200) {
+                    response?.body()?.about?.let {
+                        sharedPref.setString(Constants.SOS_NUMBER,it.sosNumber)
+                    }
+                    progressBar.value = false
+                    onSuccessfullyAbout.value = response.body()
+                } else {
+                    progressBar.value = false
+                    feedBackMessage.value = frequentFunctions.errorMessage(response.errorBody()!!.string())
+                }
+            }
+            override fun onFailure(call: Call<AboutResponse>, t: Throwable) {
+                  progressBar.value = false
+                 feedBackMessage.value = t!!.message
             }
         })
     }

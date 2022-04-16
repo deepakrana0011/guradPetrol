@@ -31,16 +31,16 @@
             android:layout_centerHorizontal="true"
             android:textColor="@color/colorBlue"
             android:textSize="@dimen/sp_sixteen"/>
+
     <androidx.viewpager.widget.ViewPager
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/dp_twenty_eight"
-            android:layout_marginLeft="@dimen/dp_twenty_eight"
-            android:layout_marginTop="@dimen/dp_fifty"
-            android:layout_above="@+id/pageIndicatorView"
-            android:layout_below="@+id/textViewAGuide"
-            android:id="@+id/viewPager">
-    </androidx.viewpager.widget.ViewPager>
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/pageIndicatorView"
+        android:layout_below="@+id/textViewAGuide"
+        android:layout_marginLeft="@dimen/dp_twenty_eight"
+        android:layout_marginTop="@dimen/dp_fifty"
+        android:layout_marginRight="@dimen/dp_twenty_eight"></androidx.viewpager.widget.ViewPager>
 
     <com.rd.PageIndicatorView
             android:id="@+id/pageIndicatorView"

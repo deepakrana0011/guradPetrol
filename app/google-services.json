@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "102429951401",
+    "project_id": "guard-patrol-36285",
+    "storage_bucket": "guard-patrol-36285.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102429951401:android:c5ad72bb6f7252853030b8",
+        "android_client_info": {
+          "package_name": "com.patrol.guard.guardpatrol"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "102429951401-47d8feq6ia55er6ciui5dfag6dk1gts8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZm72tIMlHgWK1_BdVyFczFh5bjNr9hBk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "102429951401-47d8feq6ia55er6ciui5dfag6dk1gts8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

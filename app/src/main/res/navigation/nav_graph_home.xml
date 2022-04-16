@@ -7,10 +7,11 @@
               android:name="com.patrol.guard.guardpatrol.view.fragment.homFragment.HomeFragment"
               android:label="HomeFragment"
               tools:layout="@layout/fragment_home"
-    />
-    <fragment android:id="@+id/historyFragment"
+    >
+    </fragment>
+   <!-- <fragment android:id="@+id/historyFragment"
               android:name="com.patrol.guard.guardpatrol.view.fragment.history.HistoryFragment"
               android:label="HistoryFragment"
               tools:layout="@layout/fragment_history"
-    />
+    />-->
 </navigation>

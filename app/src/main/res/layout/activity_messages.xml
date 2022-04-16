@@ -48,94 +48,95 @@
 
 
             <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/relativeLayoutBottom"
+                android:fillViewport="true"
+                android:overScrollMode="never"
+                android:scrollbars="none">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:overScrollMode="never"
-                    android:fillViewport="true"
-                    android:layout_above="@+id/relativeLayoutBottom"
-                    android:scrollbars="none">
-                <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                    android:orientation="vertical">
 
                     <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/dp_sixteen">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dp_sixteen">
 
                         <TextView
+                            android:id="@+id/textViewSelectIncidents"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="@string/select_incidents"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/sp_sixteen"
+                            android:visibility="gone" />
+
+                        <LinearLayout
+                            android:id="@+id/linearLayoutNearestCheckPoint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:gravity="center_vertical">
+
+                            <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/textViewSelectIncidents"
-                                android:text="@string/select_incidents"
-                                android:layout_centerVertical="true"
-                                android:visibility="gone"
-                                android:fontFamily="@font/roboto_bold"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="@string/assign_nearest_checkpoint"
                                 android:textColor="@android:color/black"
-                                android:textSize="@dimen/sp_sixteen"/>
-
-                        <LinearLayout android:layout_width="wrap_content"
-                                      android:layout_height="wrap_content"
-                                      android:id="@+id/linearLayoutNearestCheckPoint"
-                                      android:gravity="center_vertical"
-                                      android:layout_alignParentRight="true">
-                            <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/assign_nearest_checkpoint"
-                                    android:fontFamily="@font/roboto_regular"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="@dimen/sp_tweleve"/>
+                                android:textSize="@dimen/sp_tweleve" />
 
                             <androidx.appcompat.widget.SwitchCompat
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:id="@+id/switchButtonNearestCheckPoint"
-                                    android:layout_marginLeft="@dimen/dp_eight"
-                                    android:onCheckedChanged="@{messageViewModel::checkBoxChanged}"
-                                    android:theme="@style/customeSwitch"
-                            />
+                                android:id="@+id/switchButtonNearestCheckPoint"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/dp_eight"
+                                android:onCheckedChanged="@{messageViewModel::checkBoxChanged}"
+                                android:theme="@style/customeSwitch" />
                         </LinearLayout>
                     </RelativeLayout>
+
                     <RadioGroup
-                            android:layout_width="@dimen/dp_two_fifty"
+                        android:layout_width="@dimen/dp_two_fifty"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textViewSelectIncidents"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radioButtonImage"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:layout_gravity="center_horizontal"
-                            android:layout_centerHorizontal="true"
-                            android:layout_below="@+id/textViewSelectIncidents"
-                    >
+                            android:layout_weight="1"
+                            android:background="@drawable/selector_radio_button_lt_lb_round"
+                            android:button="@null"
+                            android:fontFamily="@font/roboto_bold"
+                            android:gravity="center"
+                            android:padding="@dimen/dp_tweleve"
+                            android:text="@string/image"
+                            android:textAllCaps="true"
+                            android:textColor="@color/radio_button_text_color_selector" />
 
                         <RadioButton
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/radioButtonImage"
-                                android:button="@null"
-                                android:textColor="@color/radio_button_text_color_selector"
-                                android:padding="@dimen/dp_tweleve"
-                                android:fontFamily="@font/roboto_bold"
-                                android:text="@string/image"
-                                android:gravity="center"
-                                android:textAllCaps="true"
-                                android:background="@drawable/selector_radio_button_lt_lb_round"
-                                android:layout_weight="1"
-                        />
-
-                        <RadioButton
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/radioButtonAudio"
-                                android:padding="@dimen/dp_tweleve"
-                                android:button="@null"
-                                android:text="@string/audio"
-                                android:gravity="center"
-                                android:textAllCaps="true"
-                                android:layout_marginLeft="-2dp"
-                                android:textColor="@color/radio_button_text_color_selector"
-                                android:fontFamily="@font/roboto_bold"
-                                android:background="@drawable/selector_radio_button_rt_rb_round"
-                                android:layout_weight="1"/>
+                            android:id="@+id/radioButtonAudio"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-2dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/selector_radio_button_rt_rb_round"
+                            android:button="@null"
+                            android:fontFamily="@font/roboto_bold"
+                            android:gravity="center"
+                            android:padding="@dimen/dp_tweleve"
+                            android:text="@string/audio"
+                            android:textAllCaps="true"
+                            android:textColor="@color/radio_button_text_color_selector" />
                     </RadioGroup>
 
                     <!-- <FrameLayout
@@ -144,49 +145,47 @@
                              android:id="@+id/frameLayout"></FrameLayout>-->
 
                     <androidx.viewpager.widget.ViewPager
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp_three_hundered"
-                            android:layout_marginTop="@dimen/dp_twenty_four"
-                            android:id="@+id/viewPager"
-                    >
-                    </androidx.viewpager.widget.ViewPager>
+                        android:id="@+id/viewPager"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_three_hundered"
+                        android:layout_marginTop="@dimen/dp_twenty_four"></androidx.viewpager.widget.ViewPager>
 
                     <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/dp_eight"
-                            android:layout_marginRight="@dimen/dp_eight">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp_eight"
+                        android:layout_marginRight="@dimen/dp_eight">
 
                         <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/textView"
-                                android:textSize="@dimen/sp_sixteen"
-                                android:textColor="@android:color/black"
-                                android:fontFamily="@font/roboto_bold"
-                                android:text="@string/text_message"/>
+                            android:id="@+id/textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="@string/text_message"
+                            android:textColor="@android:color/black"
+                            android:textSize="@dimen/sp_sixteen" />
 
                         <androidx.cardview.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/dp_one_twenty"
-                                app:cardCornerRadius="@dimen/dp_tweleve"
-                                app:cardUseCompatPadding="true"
-                                android:layout_margin="@dimen/dp_eight"
-                                android:layout_marginTop="@dimen/dp_four"
-                                android:layout_below="@+id/textView">
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_one_twenty"
+                            android:layout_below="@+id/textView"
+                            android:layout_margin="@dimen/dp_eight"
+                            android:layout_marginTop="@dimen/dp_four"
+                            app:cardCornerRadius="@dimen/dp_tweleve"
+                            app:cardUseCompatPadding="true">
+
                             <EditText
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@null"
-                                    android:gravity="start"
-                                    android:textSize="@dimen/sp_fourteen"
-                                    android:maxLength="5000"
-                                    android:text="@={messageViewModel.message}"
-                                    android:textColor="@android:color/black"
-                                    android:fontFamily="@font/roboto_regular"
-                                    android:hint="Type in your message within 5000 chars"
-                                    android:padding="@dimen/dp_eight"
-                            />
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@null"
+                                android:fontFamily="@font/roboto_regular"
+                                android:gravity="start"
+                                android:hint="Type in your message within 5000 chars"
+                                android:maxLength="5000"
+                                android:padding="@dimen/dp_eight"
+                                android:text="@={messageViewModel.message}"
+                                android:textColor="@android:color/black"
+                                android:textSize="@dimen/sp_fourteen" />
 
                         </androidx.cardview.widget.CardView>
 

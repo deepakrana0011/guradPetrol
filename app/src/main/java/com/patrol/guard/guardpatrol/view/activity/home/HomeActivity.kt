@@ -82,7 +82,7 @@ class HomeActivity : BaseActivity(), NavigationAdapter.ClickListnerHandler, View
         customToolBarWithMenu(toolBar, drawer_layout)
     }
 
-     public fun getSingleUpdate() {
+    fun getSingleUpdate() {
         Locus.getCurrentLocation(this) { result ->
             result.location?.let {
 
@@ -187,8 +187,8 @@ class HomeActivity : BaseActivity(), NavigationAdapter.ClickListnerHandler, View
                 }
                 drawer_layout.closeDrawer(GravityCompat.START)
             }
-            1 -> {
-                if (currentFragment !is HistoryFragment) {
+           /* 1 -> {
+               *//* if (currentFragment !is HistoryFragment) {
                     fragmentFunctions.replaceFragment(
                         this,
                         HistoryFragment(),
@@ -198,10 +198,10 @@ class HomeActivity : BaseActivity(), NavigationAdapter.ClickListnerHandler, View
                     textViewTimeLine!!.visibility = View.GONE
                     textViewTitleName!!.setText(getString(R.string.history))
                 }
-                drawer_layout.closeDrawer(GravityCompat.START)
-            }
+                drawer_layout.closeDrawer(GravityCompat.START)*//*
+            }*/
 
-            2 -> {
+            1 -> {
                 if (currentFragment !is AboutFragment) {
                     fragmentFunctions.replaceFragment(
                         this,
@@ -216,7 +216,7 @@ class HomeActivity : BaseActivity(), NavigationAdapter.ClickListnerHandler, View
                 drawer_layout.closeDrawer(GravityCompat.START)
             }
 
-            3 -> {
+            2 -> {
                 if (currentFragment !is SettingFragment) {
                     fragmentFunctions.replaceFragment(
                         this,

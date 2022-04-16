@@ -142,6 +142,7 @@
     <string name="nearest_check_point">Nearest checkpoint</string>
     <string name="wrong_qr_code">You scanned wrong QR code</string>
     <string name="new_pin_not_match">New pin does not matched.</string>
+
     <string name="no_tour_error">No tour available for you</string>
     <string name="message_box_hint">Type in your message within 5000 chars</string>
     <string name="logout_text">LOG OUT</string>
